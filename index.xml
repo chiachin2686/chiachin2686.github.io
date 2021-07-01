@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Program Warehouse</title>
+    <link>https://chiachin2686.github.io/</link>
+    <description>Recent content on Program Warehouse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://chiachin2686.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我是 yaml 格式的 Front Matter</title>
+      <link>https://chiachin2686.github.io/2020/09/%E6%88%91%E6%98%AF-yaml-%E6%A0%BC%E5%BC%8F%E7%9A%84-front-matter/</link>
+      <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://chiachin2686.github.io/2020/09/%E6%88%91%E6%98%AF-yaml-%E6%A0%BC%E5%BC%8F%E7%9A%84-front-matter/</guid>
+      <description>Boom!!</description>
+    </item>
+    
+    <item>
+      <title>Tags plugins showcase</title>
+      <link>https://chiachin2686.github.io/2014/10/tags-plugins-showcase/</link>
+      <pubDate>Wed, 29 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://chiachin2686.github.io/2014/10/tags-plugins-showcase/</guid>
+      <description>&lt;p&gt;This post is used to show how tag plugins are displayed. See &lt;a href=&#34;https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md#tags&#34;&gt;docs&lt;/a&gt; for more info.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hidden tag section showcase</title>
+      <link>https://chiachin2686.github.io/2014/08/hidden-tag-section-showcase/</link>
+      <pubDate>Sat, 16 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://chiachin2686.github.io/2014/08/hidden-tag-section-showcase/</guid>
+      <description>&lt;p&gt;This post is used to show how a site looks if the tag section is hidden.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>中文測試</title>
+      <link>https://chiachin2686.github.io/2013/10/chinese-test/</link>
+      <pubDate>Wed, 02 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://chiachin2686.github.io/2013/10/chinese-test/</guid>
+      <description>&lt;p&gt;This is a chinese test post to show you how chinese is displayed.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
