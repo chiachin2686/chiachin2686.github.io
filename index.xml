@@ -43,5 +43,14 @@
       <description>&lt;p&gt;This is a chinese test post to show you how chinese is displayed.&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>日本語テスト</title>
+      <link>https://chiachin2686.github.io/2013/01/japanese-test/</link>
+      <pubDate>Wed, 02 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://chiachin2686.github.io/2013/01/japanese-test/</guid>
+      <description>&lt;p&gt;This is a Japanese test post to show you how japanese is displayed.&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>
