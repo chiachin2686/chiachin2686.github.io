@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.83.1 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Andy Chung">
+<meta name="keywords" content="web, hugo">
+<meta name="description" content="建立部落格">
+
+
+<meta property="og:description" content="建立部落格">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Hugo 與 GitHub Pages 建立部落格">
+<meta name="twitter:title" content="使用 Hugo 與 GitHub Pages 建立部落格">
+<meta property="og:url" content="https://chiachin2686.github.io/2021/06/use-hugo-and-github-pages-to-create-a-blog/">
+<meta property="twitter:url" content="https://chiachin2686.github.io/2021/06/use-hugo-and-github-pages-to-create-a-blog/">
+<meta property="og:site_name" content="Program Warehouse">
+<meta property="og:description" content="建立部落格">
+<meta name="twitter:description" content="建立部落格">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-06-27T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-06-27T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="web">
+    
+      <meta property="article:section" content="hugo">
+    
+  
+  
+    
+      <meta property="article:tag" content="web">
+    
+      <meta property="article:tag" content="hugo">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b2.jpg">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b2.jpg">
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b2.jpg">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b2.jpg">
+
+
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/avatar2.png">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/avatar2.png">
+
+
+    <title>使用 Hugo 與 GitHub Pages 建立部落格</title>
+
+    <link rel="icon" href="images/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="https://chiachin2686.github.io/2021/06/use-hugo-and-github-pages-to-create-a-blog/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://chiachin2686.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-199882545-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chiachin2686.github.io/">Program Warehouse</a>
+  </div>
+  
+    
+      <a class="header-right-picture goback_homepage"
+         href="https://chiachin2686.github.io/">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chiachin2686.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Andy Chung</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello!! Welcome to my blog.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">關於我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/chiachin2686" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/15313314/andycc1126" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('/images/blog_image/b2.jpg')"
+       data-behavior="4">
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      使用 Hugo 與 GitHub Pages 建立部落格
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-06-27T00:00:00Z">
+        
+  
+  
+  
+  
+    2021-06-27
+  
+
+      </time>
+	  <span> | 閱讀約2分鐘 | </span>
+	  
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://chiachin2686.github.io/categories/web">web</a>, 
+    
+      <a class="category-link" href="https://chiachin2686.github.io/categories/hugo">hugo</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>本篇介紹如何快速使用 Hugo 建立一個部落格，並部署到 GitHub 上</p>
+
+<h1 id="table-of-contents">目錄</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#關於hugo">關於Hugo</a></li>
+<li><a href="#安裝hugo">安裝Hugo</a></li>
+<li><a href="#產生新專案">產生新專案</a></li>
+<li><a href="#建立與設置佈景">建立與設置佈景</a>
+<ul>
+<li><a href="#clone-the-theme">clone the theme</a></li>
+<li><a href="#複製-config-toml-範例">複製 config.toml 範例</a></li>
+<li><a href="#編輯-config-toml-指定佈景名稱為-tranquilpeak">編輯 config.toml 指定佈景名稱為 tranquilpeak</a></li>
+<li><a href="#config-toml-參數設置">config.toml 參數設置</a></li>
+</ul></li>
+<li><a href="#在-hugo-上使用-google-analytics">在 Hugo 上使用 Google Analytics</a></li>
+<li><a href="#在-hugo-上使用-disqus">在 Hugo 上使用 Disqus</a></li>
+<li><a href="#新增一篇文章">新增一篇文章</a></li>
+<li><a href="#在本地端預覽內容">在本地端預覽內容</a></li>
+<li><a href="#hugo-網站部署">Hugo 網站部署</a>
+<ul>
+<li><a href="#註冊-github-帳號">註冊 GitHub 帳號</a></li>
+<li><a href="#建立一個-github-repository">建立一個 GitHub Repository</a></li>
+<li><a href="#部署到-github-pages">部署到 GitHub Pages</a></li>
+<li><a href="#瀏覽部署網站結果">瀏覽部署網站結果</a></li>
+</ul></li>
+<li><a href="#hugo網站自動部署">Hugo網站自動部署</a></li>
+<li><a href="#結語">結語</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</nav>
+
+<h1 id="前言">前言</h1>
+
+<p>原本我是沒有寫部落格的習慣，但最近學了一些東西，感覺有必要將自己所學的知識記錄下來，於是開始尋找適合的部落格，
+在網路上找了一下，發現可以利用 Hugo 在 GitHub Pages 上建置 Blog，官方提供的教學相當豐富。</p>
+
+<h1 id="關於hugo">關於Hugo</h1>
+
+<p>Hugo 是一種開源的靜態網頁生成器，使用 Go 語言寫的，使用者可以透過 Markdown 語法撰寫內容後建立靜態網頁並發佈，讓使用者能專注在內容上。
+在官方網站的首頁上寫著「The world’s fastest framework for building websites」，這就表示你可以輕鬆快速構建自己的網站。</p>
+
+<h1 id="安裝hugo">安裝Hugo</h1>
+
+<ul>
+<li><p>到<a href="https://github.com/gohugoio/hugo/releases" target="_blank">官網</a>下載安裝包(根據自己的作業系統)。我使用的是64位元 Windows，
+所以下載 <code>hugo_0.83.1_Windows-64bit.zip</code></p></li>
+
+<li><p>將下載回來的 zip 檔解壓縮，資料夾裡會有三個檔案，將 <code>hugo.exe</code> 的資料夾路徑加到環境變數/使用者變數的 Path 中
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog1_1.png"></p></li>
+
+<li><p>在 cmd 下 <code>hugo version</code>，如果出現類似下列的訊息就代表安裝成功
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog1_2.png"></p></li>
+</ul>
+
+<h1 id="產生新專案">產生新專案</h1>
+
+<p>要產生一個新的 website 內容，可以直接執行</p>
+<pre><code>hugo new site myblog</code></pre>
+<p>執行後會建立一個名為 <em>myblog</em> 的資料夾，包含以下內容</p>
+<pre><code>.
+├── archetypes
+│   └── default.md
+├── config.toml
+├── content
+├── data
+├── layouts
+├── static
+└── themes</code></pre>
+<p>其中</p>
+
+<ul>
+<li><p>archetypes: 放置生成文件的基礎樣板資料夾，當新增一個新的 content files 時，會根據這裡的樣板產生 markdown 文件，
+像是 <code>archetypes/default.md</code>，若新增的文章頂層資料夾名稱對應不到樣板時，會使用 <code>default.md</code> 作為樣板生成文件。</p></li>
+
+<li><p>config.toml: 產生網頁內容的配置檔，所有網站建置參數都可在此設置，預設使用 toml 格式，也可以使用 yaml 或 json 格式。</p></li>
+
+<li><p>content: 放置文章與網頁內容的資料夾。</p></li>
+
+<li><p>data: 儲存一些資料集或是 config 檔。</p></li>
+
+<li><p>layouts: 存放產生的網頁 layout 樣板，新專案中此資料夾會是空的，主要都是由佈景建構 layouts。</p></li>
+
+<li><p>static: 放置靜態資源檔案，如圖片、css 、js 等內容。</p></li>
+
+<li><p>themes: 從外部引入的 theme 檔案。</p></li>
+</ul>
+
+<h1 id="建立與設置佈景">建立與設置佈景</h1>
+
+<p>Hugo 並沒有預設的佈景，所以在建立資料夾後，需自行建立 theme 或使用其他 theme</p>
+
+<h2 id="clone-the-theme">clone the theme</h2>
+
+<p>執行以下指令，將想要的 <strong><em><a href="https://themes.gohugo.io" target="_blank"><u>theme repository</u></a></em></strong> clone 到專案底下的 themes 資料夾中 (我使用的佈景為 tranquilpeak )</p>
+<pre><code>#./myblog
+git init
+git submodule add https://github.com/kakawait/hugo-tranquilpeak-theme.git themes/tranquilpeak</code></pre>
+<p>或是執行</p>
+<pre><code>git clone https://github.com/kakawait/hugo-tranquilpeak-theme.git themes/tranquilpeak</code></pre>
+<h2 id="複製-config-toml-範例">複製 config.toml 範例</h2>
+
+<p>可以先複製此佈景提供的範例配置，之後再依照需求改變配置參數</p>
+<pre><code>cp themes/tranquilpeak/exampleSite/config.toml ./config.toml</code></pre>
+<h2 id="編輯-config-toml-指定佈景名稱為-tranquilpeak">編輯 config.toml 指定佈景名稱為 tranquilpeak</h2>
+<pre><code>echo &#39;theme = &#34;tranquilpeak&#34;&#39; &gt;&gt; config.toml</code></pre>
+<h2 id="config-toml-參數設置">config.toml 參數設置</h2>
+
+<p>因為設置的內容挺多的，且網路上有很多教學可以參考，在這邊我就不多做說明<br />
+<p>我是參考<span class="highlight-text yellow"><a href="https://ithelp.ithome.com.tw/articles/10241518" target="_blank">這位大大的文章</a></span>來設置的</p>
+此佈景的開發人員也有提供<u><a href="https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md" target="_blank">使用者</a></u>
+與<u><a href="https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/developer.md" target="_blank">開發者</a></u>配置說明文件
+<div class="alert info ">
+  <p>按照自己的喜好設置</p>
+</div></p>
+
+<h1 id="在-hugo-上使用-google-analytics">在 Hugo 上使用 Google Analytics</h1>
+
+<p>Hugo 有支援 Google Analytics 來統計網站的流量，我們可以在 config 檔中直接配置自己的 GA 碼，相當方便</p>
+<pre><code># config.toml
+googleAnalytics = &#34;UA-your-id&#34;</code></pre>
+<p>關於如何安裝和使用 Google Analytics，可以參考以下鏈結:</p>
+
+<ul>
+<li><a href="https://www.turingdigital.com.tw/blog/install-ga4-property" target="_blank">安裝新版 GA4</a></li>
+<li><a href="https://tw.formosasoft.com/media/1228" target="_blank">申請 Google Analytics </a></li>
+</ul>
+
+<h1 id="在-hugo-上使用-disqus">在 Hugo 上使用 Disqus</h1>
+
+<p>Hugo 也有支援 Disqus 這個知名的 Blog 留言服務板，只要建立帳號取得 shortname，在 config 檔中設定即可</p>
+<pre><code># config.toml
+disqusShortname = &#34;yourshortname&#34;</code></pre>
+<p>關於如何創建帳號以及使用 Disqus，可以參考以下鏈結:</p>
+
+<ul>
+<li><a href="https://ithelp.ithome.com.tw/articles/10248312" target="_blank">Hugo Comments System</a></li>
+</ul>
+
+<p>設置完成後可以在文章底下看到留言版
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog1_4.png"></p>
+
+<h1 id="新增一篇文章">新增一篇文章</h1>
+
+<p>為了在本地跑起來時可以看到內容，於是先新增一篇測試文章</p>
+<pre><code>hugo new post/test.md</code></pre>
+<p>檔案會被建立在 ./content/post/ 底下
+<div class="alert warning ">
+  <p>檔案名稱省略 .md 的話，文件不會被 render 到頁面上</p>
+</div></p>
+
+<h1 id="在本地端預覽內容">在本地端預覽內容</h1>
+
+<p>執行以下指令，在本地運行 hugo 專案</p>
+<pre><code>hugo server -D</code></pre>
+<p>訪問 <code>http://localhost:1313/</code>，網站已經在本地執行成功
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog1_3.png"></p>
+
+<h1 id="hugo-網站部署">Hugo 網站部署</h1>
+
+<p>當我們架設好網站，接下來就要把它公開放到網路上</p>
+
+<h2 id="註冊-github-帳號">註冊 GitHub 帳號</h2>
+
+<ul>
+<li>到 <a href="https://github.com" target="_blank">GitHub官網</a> 註冊</li>
+</ul>
+
+<h2 id="建立一個-github-repository">建立一個 GitHub Repository</h2>
+
+<ul>
+<li>註冊並登入完成之後，點選右上角的 <strong>+</strong>，接著按下 New repository
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog1_5.png"></li>
+</ul>
+
+<div class="alert warning ">
+  <p>Repository name 一定要填入 yourusername.github.io，以我自己為例，我的 username 是 chiachin2686，
+則建立資源庫名稱就要使用 chiachin2686.github.io</p>
+</div>
+
+<p>範例如下:
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog1_6.png"></p>
+
+<h2 id="部署到-github-pages">部署到 GitHub Pages</h2>
+
+<ul>
+<li><p>切換到 Hugo 專案底下，執行 <code>hugo</code> 指令，打包剛剛設置的 Hugo Site、輸出靜態文件</p>
+<pre><code># cd ./myblog
+hugo</code></pre></li>
+
+<li><p>複製剛剛建立好的 <span style="color:red;"><span class="highlight-text red"><u>Repository 鏈結</u></span></span>
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog1_7.png"></p></li>
+
+<li><p>執行 <code>git remote</code> 註冊</p></li>
+
+<li><p>將目前異動提交成一個 commit</p></li>
+
+<li><p>提交完成後，執行 <code>git push origin master</code></p></li>
+</ul>
+
+<p><strong>整個指令執行過程</strong></p>
+<pre><code># 進到專案底下，輸出靜態網頁文件，生成 public 資料夾
+$ cd ./myblog
+$ hugo
+
+# 執行遠端資源庫地址註冊
+
+$ git init
+$ git remote add git@github.com:chiachin2686/chiachin2686.github.io.git
+
+# 確認遠端資源庫地址註冊成功
+$ git remove -v
+
+# 將目前異動提交成一個 commit
+$ git add .
+$ git commit -m &#39;first commit&#39;
+
+# 推送 commit
+$ git push origin master</code></pre>
+<h2 id="瀏覽部署網站結果">瀏覽部署網站結果</h2>
+
+<p>開啟 <span style="color:orange;"><span class="highlight-text yellow"><u>https://yourusername.github.io</u></span></span> 看看網站是否已經部署成功
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog1_8.png"></p>
+
+<div class="alert success ">
+  <p>部署成功</p>
+</div>
+
+<h1 id="hugo網站自動部署">Hugo網站自動部署</h1>
+
+<p>自動部署的部分，我是參考這位大大的腳本: <a href="https://ithelp.ithome.com.tw/articles/10247319" target="_blank">deploy.sh</a></p>
+
+<p>執行腳本</p>
+<pre><code>sh deploy.sh</code></pre>
+<p>執行完成後可以到 GitHub 上檢查有無上傳成功</p>
+
+<h1 id="結語">結語</h1>
+
+<p>我個人覺得從頭到尾自己架設網站是一件很有趣的事情，可以依照自己的需求、想法來設計網站，而且網路上也有許多文章以及論壇可以參考，
+其實Hugo在安裝以及使用上滿容易上手的，反而需要多花一點時間去了解 Markdown 與 Shortcode 的語法，整體而言，我個人是很推薦使用Hugo來建立網站。</p>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://gohugo.io" target="_blank">Hugo</a></li>
+<li><a href="https://gohugo.io/getting-started/installing" target="_blank">Install Hugo</a></li>
+<li><a href="https://github.com/kakawait/hugo-tranquilpeak-theme" target="_blank">hugo-tranquilpeak-theme</a></li>
+<li><a href="https://ithelp.ithome.com.tw/users/20106430/ironman/3613" target="_blank">Hugo 貼身打造個人部落格</a></li>
+<li><a href="https://blog.genesu.me/2020/08/hugo-installation" target="_blank">貼身打造個人部落格 - 01. 安裝</a></li>
+<li><a href="https://carrie-lai.github.io/post/createhugoblog" target="_blank">使用Hugo+Github Pages建置Blog</a></li>
+<li><a href="https://markdown.tw/" target="_blank">Markdown</a></li>
+</ul>
+
+<blockquote>
+  <p>
+To know that we know what we know, and to know that we do not know what we do not know, that is true knowledge.
+</p>
+  <footer>
+    <strong></strong>
+    
+      
+        <cite>Nicolaus Copernicus</cite>
+      
+    
+  </footer>
+</blockquote>
+
+<hr />
+
+<p>Author: <a href="https://chiachin2686.github.io">Andy Chung</a> <br />
+Article link: <a href="https://chiachin2686.github.io//2021/06/use-hugo-and-github-pages-to-create-a-blog/" target="_blank">https://chiachin2686.github.io/2021/06/use-hugo-and-github-pages-to-create-a-blog/</a> <br />
+License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/web/">web</a>
+
+  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/hugo/">hugo</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/06/use-hugo-and-github-pages-to-create-a-blog/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/06/use-hugo-and-github-pages-to-create-a-blog/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Andy Chung. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/06/use-hugo-and-github-pages-to-create-a-blog/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/06/use-hugo-and-github-pages-to-create-a-blog/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F06%2Fuse-hugo-and-github-pages-to-create-a-blog%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F06%2Fuse-hugo-and-github-pages-to-create-a-blog%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Andy Chung</h4>
+    
+      <div id="about-card-bio">Hello!! Welcome to my blog.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        N/A
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taipei, Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://chiachin2686.github.io/images/background1.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://chiachin2686.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/chiachin2686.github.io\/2021\/06\/use-hugo-and-github-pages-to-create-a-blog\/';
+          
+            this.page.identifier = '\/2021\/06\/use-hugo-and-github-pages-to-create-a-blog\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'program-warehouse';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
