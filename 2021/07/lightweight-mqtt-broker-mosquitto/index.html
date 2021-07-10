@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.83.1 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Andy Chung">
+<meta name="keywords" content="MQTT, Mosquitto">
+<meta name="description" content="輕量級 MQTT Broker -- Mosquitto">
+
+
+<meta property="og:description" content="輕量級 MQTT Broker -- Mosquitto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="輕量級 MQTT Broker -- Mosquitto">
+<meta name="twitter:title" content="輕量級 MQTT Broker -- Mosquitto">
+<meta property="og:url" content="https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/">
+<meta property="twitter:url" content="https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/">
+<meta property="og:site_name" content="Program Warehouse">
+<meta property="og:description" content="輕量級 MQTT Broker -- Mosquitto">
+<meta name="twitter:description" content="輕量級 MQTT Broker -- Mosquitto">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-07-08T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-07-08T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="IoT">
+    
+      <meta property="article:section" content="MQTT">
+    
+  
+  
+    
+      <meta property="article:tag" content="IoT">
+    
+      <meta property="article:tag" content="MQTT">
+    
+      <meta property="article:tag" content="Mosquitto">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b5.jpg">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b5.jpg">
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b5.jpg">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b5.jpg">
+
+
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/avatar2.png">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/avatar2.png">
+
+
+    <title>輕量級 MQTT Broker -- Mosquitto</title>
+
+    <link rel="icon" href="images/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://chiachin2686.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-199882545-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chiachin2686.github.io/">Program Warehouse</a>
+  </div>
+  
+    
+      <a class="header-right-picture goback_homepage"
+         href="https://chiachin2686.github.io/">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chiachin2686.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Andy Chung</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello!! Welcome to my blog.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">關於我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/chiachin2686" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/15313314/andycc1126" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('/images/blog_image/b5.jpg')"
+       data-behavior="4">
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      輕量級 MQTT Broker -- Mosquitto
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-07-08T00:00:00Z">
+        
+  
+  
+  
+  
+    2021-07-08
+  
+
+      </time>
+	  <span> | 閱讀約4分鐘 | </span>
+	  
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://chiachin2686.github.io/categories/iot">IoT</a>, 
+    
+      <a class="category-link" href="https://chiachin2686.github.io/categories/mqtt">MQTT</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>本篇將介紹物聯網常用的 MQTT 通訊協定以及 Mosquitto</p>
+
+<h1 id="table-of-contents">目錄</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#關於-mqtt">關於 MQTT</a></li>
+<li><a href="#mqtt-訊息發送機制">MQTT 訊息發送機制</a></li>
+<li><a href="#mqtt-的主題-topic-名稱">MQTT 的主題（Topic）名稱</a></li>
+<li><a href="#mqtt-qos">MQTT QoS</a></li>
+<li><a href="#關於-mosquitto">關於 Mosquitto</a></li>
+<li><a href="#安裝-mosquitto">安裝 Mosquitto</a>
+<ul>
+<li><a href="#在-linux-ubuntu-上安裝">在 Linux Ubuntu 上安裝</a></li>
+</ul></li>
+<li><a href="#啟動和停止-broker">啟動和停止 Broker</a>
+<ul>
+<li><a href="#啟動">啟動</a></li>
+<li><a href="#停止">停止</a></li>
+<li><a href="#使用配置文件啟動-mosquitto">使用配置文件啟動 Mosquitto</a></li>
+<li><a href="#在-daemon-運行時停止-mosquitto">在 daemon 運行時停止 Mosquitto</a></li>
+<li><a href="#查看目前服務狀態">查看目前服務狀態</a></li>
+</ul></li>
+<li><a href="#使用-mosquitto-pub-和-mosquitto-sub-工具">使用 Mosquitto_pub 和 Mosquitto_sub 工具</a>
+<ul>
+<li><a href="#使用-mosquitto-pub-發布">使用 Mosquitto_pub 發布</a></li>
+<li><a href="#使用-mosquitto-sub-訂閱">使用 Mosquitto_sub 訂閱</a></li>
+</ul></li>
+<li><a href="#設置-mosquitto-conf">設置 mosquitto.conf</a></li>
+<li><a href="#新版-mosquitto">新版 Mosquitto</a></li>
+<li><a href="#設置-ssl-tls">設置 SSL/TLS</a></li>
+<li><a href="#mqtt-其他常用工具">MQTT 其他常用工具</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</nav>
+
+<h1 id="前言">前言</h1>
+
+<p>最近因為一些緣故開始接觸 MQTT，在網路上一查，發現關於 MQTT 的文章相當多，於是經過一番整理後，想把一些內容記錄下來。</p>
+
+<h1 id="關於-mqtt">關於 MQTT</h1>
+
+<p><a href="https://mqtt.org" target="_blank" rel="noreferrer noopener">MQTT</a> 是一種 machine-to-machine（M2M） 的輕量級通訊協定，由 IBM 的 Andy Stanford-Clark 博士和 Arcom 的 Arlen Nipper 博士於1999年發明，這個協定的訊息內容很精簡，非常適合用於網路頻寬有限的物聯網裝置與處理器，且已經有許多 MQTT Library 被開發出來，應用在 Python、Arduino、JavaScript&hellip;等，還有 Open Source 的 MQTT broker，使得開發物聯網的通訊變得相當簡單方便。
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_1.png"></p>
+
+<h1 id="mqtt-訊息發送機制">MQTT 訊息發送機制</h1>
+
+<p>MQTT 提供了一種使用發布/訂閱 ( Publish/Subscribe ) 機制執行訊息傳輸的輕量級方法，代理人 ( broker ) 是個伺服器軟體，向伺服器發送主題 ( topic ) 的一方是發布者 ( publisher），從伺服器取得主題的一方則是訂閱者 （ subscriber ） ，如下圖所示:
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_2.png"></p>
+
+<p>代理人可存放發布者的訊息，在發布者斷線的情況下，提供訂閱者最近更新的訊息。訂閱者需要告知代理人想要訂閱的主題，每當發布者發布新訊息時，代理人就會依照主題，傳送給所有訂閱者。「發布者」和「訂閱者」都是用戶端，代理人是伺服器。鑒於兩個用戶端之間有伺服器當作中繼站，所以兩邊並不需要知道對方的IP。</p>
+
+<h1 id="mqtt-的主題-topic-名稱">MQTT 的主題（Topic）名稱</h1>
+
+<p>我們可以自行決定主題名稱，例如: 傳送溫度的訊息主題可命名為「temp」。主題名稱也支援類似檔案路徑的階層式命名方式，每個階層之間用斜線 ( / ) 分隔，例如，我家房間的溫度感測器#1，其主題名稱可命名為：</p>
+<pre><code>myhome/room/temp1</code></pre>
+<div class="alert warning ">
+  <p><h4 id="命名主題的注意事項">命名主題的注意事項：</h4>
+
+<ul>
+<li>有些裝置或程式語言不一定支援中文，主題名稱盡量使用英文</li>
+<li>自訂的主題名稱請勿用$開頭，也不可包含#和+</li>
+<li>名稱長度不可超過216位元組</li>
+<li>名稱最好不要加入空格</li>
+<li>名稱大小寫有區別</li>
+</ul>
+</p>
+</div>
+
+<h1 id="mqtt-qos">MQTT QoS</h1>
+
+<p>QoS (Quality of Service) 代表發布者與代理人或代理人與訂閱者之間的傳輸品質。MQTT定義了 0 、 1 和 2 三個層級的品質設定（有些伺服器軟體不一定三個層級都支援，Mosquitto 全都支援）：
+<br /><br /></p>
+
+<ul>
+<li>0：&ensp;最多傳送一次（At most once）</li>
+<li>1：&ensp;至少傳送一次（At least once）</li>
+<li>2：&ensp;確實傳送一次（Exactly once）</li>
+</ul>
+
+<p>QoS 0 : &ensp;發布者傳送訊息給代理人，但不保證訊息會送達<br />
+QoS 1 : &ensp;發布者傳送訊息給代理人，當代理人收到訊息之後，會回應 <em>PUBACK</em> （publish acknowledgement）訊息給發布者，確認有收到訊息。如果過了一段時間，發布者沒有收到 <em>PUBACK</em> ，它會認定訊息沒有送達，因而重新傳送一次訊息<br />
+QoS 2 : &ensp;當代理人收到訊息時，它將回覆 <em>PUBREC</em> （publish received），並暫存訊息的 <em>packetId</em> ，以防重複處理相同的訊息。當發布者收到 <em>PUBREC</em> 回應時，會傳送 <em>PUBREL</em> （publish release）給代理人，接著代理人會先把訊息傳送給訂閱者，然後回應 <em>PUBCOMP</em> （publish complete）並刪除之前暫存的訊息
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_9.png">
+ <p style="text-align:center;">圖源: <a href="https://devopedia.org/mqtt">https://devopedia.org/mqtt</a></p></p>
+
+<h1 id="關於-mosquitto">關於 Mosquitto</h1>
+
+<p><a href="https://mosquitto.org" target="_blank" rel="noreferrer noopener">Mosquitto</a> 是一個開放原始碼 MQTT broker，由 Eclipse 基金會所開發，實現了 MQTT 3.1.0、3.1.1 和 5.0 版本，其特點是輕巧，在低功耗的裝置或伺服器的所有設備上都適合使用。<br />
+它的功能包含儲存訊息以及處理訊息，若收到任何訊息，會根據不同 Topic 分類，並將訊息傳給有訂閱的用戶端。&nbsp;
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_3.png"></p>
+
+<h1 id="安裝-mosquitto">安裝 Mosquitto</h1>
+
+<p>Mosquitto 支援各種常見的作業系統，而我自己是安裝在 Linux Ubuntu 上，若是要安裝在 Windows，請參考以下這篇文章:&ensp;<a href="https://swf.com.tw/?p=1005" target="_blank" rel="noreferrer noopener">安裝MQTT伺服器Mosquitto，Windows系統篇</a></p>
+
+<p>其他系統安裝可參考官網:&ensp;<a href="https://mosquitto.org/download" target="_blank" rel="noreferrer noopener">Download</a></p>
+
+<h2 id="在-linux-ubuntu-上安裝">在 Linux Ubuntu 上安裝</h2>
+
+<p>在 cmd 中按順序 type 以下指令:</p>
+<pre><code># 如果使用的是較早版本的 Ubuntu 或想要較新版本的 mosquitto，請加入 <span class="highlight-text red">mosquitto-dev PPA</span>
+$ sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
+$ sudo apt-get update
+$ sudo apt-get install mosquitto
+$ sudo apt-get install mosquitto-clients
+$ sudo apt clean</code></pre>
+<h1 id="啟動和停止-broker">啟動和停止 Broker</h1>
+
+<p>根據安裝的方式不同，broker 可能會在 system startup 時自動啟動</p>
+
+<h2 id="啟動">啟動</h2>
+<pre><code>$ sudo service mosquitto start
+或是
+$ sudo systemctl start mosquitto.service</code></pre>
+<h2 id="停止">停止</h2>
+<pre><code>$ sudo service mosquitto stop
+或是
+$ sudo systemctl stop mosquitto.service</code></pre>
+<p>停止 / 啟動的動作會在後台啟動 mosquitto，並使用 /etc/mosquitto/ 文件夾當中的 mosquitto.conf</p>
+
+<p>若是想在 console 上看到詳細 (verbose) 訊息並啟動，請 type:</p>
+<pre><code>$ mosquitto -v</code></pre>
+<div class="alert info ">
+  <p>這對於「除錯」很有用</p>
+</div>
+
+<h2 id="使用配置文件啟動-mosquitto">使用配置文件啟動 Mosquitto</h2>
+
+<p>安裝後的配置文件（mosquitto.conf）是完全註解掉的，因為 mosquitto 不需要配置文件就可以啟動。此文件由 mosquitto 在服務啟動時加載
+<div class="alert warning ">
+  <p>在編輯預設配置文件之前，最好先做備份</p>
+</div></p>
+
+<p>要使用配置文件啟動 mosquitto，請 type：</p>
+<pre><code>$ mosquitto -c filename -v</code></pre>
+<ul>
+<li>預設的 mosquitto.conf 位在 <code>/etc/mosquitto/</code> 資料夾中</li>
+<li>可以使用自訂的 mosquitto.conf，只須更改為該文件的相對路徑即可，例如:&ensp;/home/andy/mos/mosquitto.conf</li>
+</ul>
+
+<h2 id="在-daemon-運行時停止-mosquitto">在 daemon 運行時停止 Mosquitto</h2>
+
+<p>請使用以下指令:</p>
+<pre><code>$ ps -aux | grep mosquitto
+$ pgrep mosquitto
+$ kill -9 PID (that you get from above command)</code></pre>
+<h2 id="查看目前服務狀態">查看目前服務狀態</h2>
+<pre><code>$ systemctl status mosquitto.service  
+或         
+$ service mosquitto status</code></pre>
+<div class="alert info ">
+  <p><ul>
+<li>關於 mosquitto 其他指令，可以使用 <code>mosquitto -h</code> 查看詳細使用方式</li>
+<li>broker 預設使用 <em>port 1883</em> 來監聽<br /></li>
+</ul>
+</p>
+</div>
+
+<h1 id="使用-mosquitto-pub-和-mosquitto-sub-工具">使用 Mosquitto_pub 和 Mosquitto_sub 工具</h1>
+
+<p><strong>Mosquitto_pub</strong> 和 <strong>Mosquitto_sub</strong> client端工具可以用來快速測試以及除錯，此工具與 Mosquitto 一起安裝並使用。</p>
+
+<p>以下會介紹一些「發布」與「訂閱」的範例:</p>
+
+<h2 id="使用-mosquitto-pub-發布">使用 Mosquitto_pub 發布</h2>
+
+<ul>
+<li><p>最簡單的例子:</p>
+<pre><code>$ mosquitto_pub -h localhost -m &#34;test&#34; -t home/sensor1</code></pre>
+<ul>
+<li>-h 代表設置 hostname 或 IP address</li>
+<li>-m 代表要傳送的訊息</li>
+<li>-t 代表主題名稱</li>
+</ul></li>
+
+<li><p>我們可以加入<code>-d flag</code> 看到連線、發布以及斷線等訊息</p>
+<pre><code>$ mosquitto_pub -h localhost -m &#34;test&#34; -t home/sensor1 -d</code></pre>
+<img src="https://chiachin2686.github.io/images/articles/blog2_5.png">
+
+<ul>
+<li>-d 代表 debug</li>
+</ul></li>
+</ul>
+
+<div class="alert info ">
+  <p><h3 id="常用的-flag-option">常用的 Flag Option</h3>
+
+<ul>
+<li>-r &ensp;設置 retain flag</li>
+<li>-n &ensp;傳送 null 訊息，適用於清除 retain 訊息</li>
+<li>-p &ensp;設置 port number</li>
+<li>-u &ensp;使用者名稱</li>
+<li>-P &ensp;使用者密碼</li>
+<li>-i &ensp;提供 client 名稱</li>
+<li>-I &ensp;提供 client id prefix</li>
+<li>--help &ensp;提供協助</li>
+</ul>
+</p>
+</div>
+
+<ul>
+<li><p>使用使用者名稱和密碼</p>
+<pre><code>$ mosquitto_pub -h localhost -m &#34;test&#34; -t home/sensor1 -u andy -P 1234 -d</code></pre></li>
+
+<li><p>使用 Retain Flag</p>
+<pre><code>$ mosquitto_pub -h localhost -m &#34;test&#34; -t home/sensor1 -r -d</code></pre>
+<img src="https://chiachin2686.github.io/images/articles/blog2_6.png"></li>
+
+<li><p>清除 Retained Message</p>
+<pre><code>$ mosquitto_pub -h localhost -t home/sensor1 -n -r -d</code></pre></li>
+
+<li><p>使用 Client Name
+此選項在使用帶有 ACL 的 prefix 或測試用戶端限制時很有用</p>
+<pre><code>$ mosquitto_pub -h localhost -m &#34;test&#34; -t home/sensor1 -i test_client -d
+或
+$ mosquitto_pub -h localhost -m &#34;test&#34; -t home/sensor1 -I test_client -d</code></pre>
+<img src="https://chiachin2686.github.io/images/articles/blog2_7.png"></li>
+
+<li><p>發布 JSON 格式資料</p>
+<pre><code>$ mosquitto_pub -h localhost -t home/sensor1 -m &#34;{\&#34;value1\&#34;:60,\&#34;value2\&#34;:20}&#34;</code></pre></li>
+
+<li><p>使用 SSL/TLS 加密</p>
+<pre><code>$ mosquitto_pub -h localhost -t home/sensor1 -m &#34;test&#34; -d --cafile certs/ca.crt -p 8883 --insecure</code></pre>
+<ul>
+<li>--cafile &ensp;CA 文件路徑</li>
+<li>--insecure &ensp;如果證書上的名稱與實際的 hostname 不匹配，使用此選項</li>
+</ul></li>
+</ul>
+
+<h2 id="使用-mosquitto-sub-訂閱">使用 Mosquitto_sub 訂閱</h2>
+
+<p>使用的 Flag 與 Mosquitto_pub 近乎一樣，僅有少數不同，所以不再贅述，只會介紹常用的 Flag</p>
+
+<ul>
+<li><p>簡單的例子:</p>
+<pre><code>$ mosquitto_sub -h localhost -t home/sensor1 -d</code></pre>
+<p>會收到發布者的訊息
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_8.png"></p></li>
+
+<li><p>限定收到的訊息數量
+收到一定數量的消息後會切斷連線</p>
+<pre><code>$ mosquitto_sub -h localhost -t home/sensor1 -C 3</code></pre></li>
+
+<li><p>在收到的訊息前顯示主題名稱</p>
+<pre><code>$ mosquitto_sub -h localhost -t home/sensor1 -v</code></pre></li>
+
+<li><p>變更 QoS</p>
+<pre><code>$ mosquitto_sub -h localhost -t home/sensor1 -q 1 -d</code></pre></li>
+</ul>
+
+<div class="alert warning ">
+  <p>當我們啟動 mosquitto_sub 時，它會無限運行，直到按 CTRL+C 才停止</p>
+</div>
+
+<h1 id="設置-mosquitto-conf">設置 mosquitto.conf</h1>
+
+<p>Mosquitto 預設的配置文件為 mosquitto.conf，可以在 Linux 上的 <code>/etc/mosquitto</code> 資料夾中找到。為了使 mosquitto.conf 文件中的更改生效，必須重新啟動 mosquitto，在某些情況下，許多更改無需重新啟動 mosquitto 即可生效。</p>
+
+<p>可以參考這篇文章: <a href="http://www.steves-internet-guide.com/mossquitto-conf-file" target="_blank" rel="noreferrer noopener">Quick Guide to The Mosquitto.conf File With Examples</a></p>
+
+<p>官網參考資料: <a href="https://mosquitto.org/man/mosquitto-conf-5.html" target="_blank" rel="noreferrer noopener">mosquitto.conf man page</a></p>
+
+<h1 id="新版-mosquitto">新版 Mosquitto</h1>
+
+<p>Mosquitto v2 修改了一些功能，預設情況下，它需要「<span class="highlight-text orange">身份驗證</span>」且「<span class="highlight-text orange">不在網路地址上做偵聽</span>」。<br />
+以下簡單的配置文件 (mosquitto.conf) 將使 mosquitto 像之前版本一樣啟動：</p>
+<pre><code>listener 1883
+allow_anonymous true</code></pre>
+<p>官網參考資料: <a href="https://mosquitto.org/documentation/migrating-to-2-0" target="_blank" rel="noreferrer noopener">Migrating from 1.x to 2.0</a></p>
+
+<h1 id="設置-ssl-tls">設置 SSL/TLS</h1>
+
+<p>可以參考這篇文章: <a href="http://www.steves-internet-guide.com/mosquitto-tls" target="_blank" rel="noreferrer noopener">Mosquitto SSL Configuration -MQTT TLS Security</a></p>
+
+<h1 id="mqtt-其他常用工具">MQTT 其他常用工具</h1>
+
+<ul>
+<li><strong><a href="https://chrome.google.com/webstore/detail/mqttlens/hemojaaeigabkbcookmlgmdigohjobjm?hl=zh-TW" target="_blank" rel="noreferrer noopener">MQTTlens</a></strong>:<br />
+它是 chrome 瀏覽器的附加組件，對於除錯和快速測試非常好用，我們可以使用 Web 界面發布和訂閱主題，且比 cmd 更易於使用
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_4.png"></li>
+</ul>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://mqtt.org/getting-started" target="_blank" rel="noreferrer noopener">MQTT--Getting started</a></li>
+<li><a href="http://www.steves-internet-guide.com/mosquitto-broker" target="_blank" rel="noreferrer noopener">Mosquitto MQTT Broker</a></li>
+<li><a href="http://www.steves-internet-guide.com/install-mosquitto-linux" target="_blank" rel="noreferrer noopener">How to Install The Mosquitto MQTT Broker on Linux</a></li>
+<li><a href="https://swf.com.tw/?s=MQTT" target="_blank" rel="noreferrer noopener">MQTT教學</a></li>
+</ul>
+
+<blockquote>
+  <p>
+To know that we know what we know, and to know that we do not know what we do not know, that is true knowledge.
+</p>
+  <footer>
+    <strong></strong>
+    
+      
+        <cite>Nicolaus Copernicus</cite>
+      
+    
+  </footer>
+</blockquote>
+
+<hr />
+
+<p>Author: <a href="https://chiachin2686.github.io">Andy Chung</a> <br />
+Article link: <a href="https://chiachin2686.github.io//2021/07/lightweight-mqtt-broker-mosquitto/" target="_blank" rel="noreferrer noopener">https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/</a> <br />
+License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/iot/">IoT</a>
+
+  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/mqtt/">MQTT</a>
+
+  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/mosquitto/">Mosquitto</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/06/image-materials-and-online-tools/" data-tooltip="常用的圖片素材與線上工具">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Andy Chung. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/06/image-materials-and-online-tools/" data-tooltip="常用的圖片素材與線上工具">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F07%2Flightweight-mqtt-broker-mosquitto%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F07%2Flightweight-mqtt-broker-mosquitto%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Andy Chung</h4>
+    
+      <div id="about-card-bio">Hello!! Welcome to my blog.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        N/A
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taipei, Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://chiachin2686.github.io/images/background1.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://chiachin2686.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/chiachin2686.github.io\/2021\/07\/lightweight-mqtt-broker-mosquitto\/';
+          
+            this.page.identifier = '\/2021\/07\/lightweight-mqtt-broker-mosquitto\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'program-warehouse';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

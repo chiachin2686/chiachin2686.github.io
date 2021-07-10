@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IoT on Program Warehouse</title>
+    <link>https://chiachin2686.github.io/categories/iot/</link>
+    <description>Recent content in IoT on Program Warehouse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://chiachin2686.github.io/categories/iot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>輕量級 MQTT Broker -- Mosquitto</title>
+      <link>https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/</link>
+      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/</guid>
+      <description>&lt;p&gt;本篇將介紹物聯網常用的 MQTT 通訊協定以及 Mosquitto&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
