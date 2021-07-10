@@ -374,7 +374,7 @@ if (!doNotTrack) {
 <p>QoS 0 : &ensp;發布者傳送訊息給代理人，但不保證訊息會送達<br />
 QoS 1 : &ensp;發布者傳送訊息給代理人，當代理人收到訊息之後，會回應 <em>PUBACK</em> （publish acknowledgement）訊息給發布者，確認有收到訊息。如果過了一段時間，發布者沒有收到 <em>PUBACK</em> ，它會認定訊息沒有送達，因而重新傳送一次訊息<br />
 QoS 2 : &ensp;當代理人收到訊息時，它將回覆 <em>PUBREC</em> （publish received），並暫存訊息的 <em>packetId</em> ，以防重複處理相同的訊息。當發布者收到 <em>PUBREC</em> 回應時，會傳送 <em>PUBREL</em> （publish release）給代理人，接著代理人會先把訊息傳送給訂閱者，然後回應 <em>PUBCOMP</em> （publish complete）並刪除之前暫存的訊息
-<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_9.png">
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_9.jpg">
  <p style="text-align:center;">圖源: <a href="https://devopedia.org/mqtt">https://devopedia.org/mqtt</a></p></p>
 
 <h1 id="關於-mosquitto">關於 Mosquitto</h1>
