@@ -272,7 +272,7 @@ if (!doNotTrack) {
   
 
       </time>
-	  <span> | 閱讀約4分鐘 | </span>
+	  <span> | 閱讀約5分鐘 | </span>
 	  
     
     
@@ -321,7 +321,11 @@ if (!doNotTrack) {
 </ul></li>
 <li><a href="#設置-mosquitto-conf">設置 mosquitto.conf</a></li>
 <li><a href="#新版-mosquitto">新版 Mosquitto</a></li>
-<li><a href="#設置-ssl-tls">設置 SSL/TLS</a></li>
+<li><a href="#設置-ssl-tls-安全設定">設置 SSL/TLS 安全設定</a>
+<ul>
+<li><a href="#詳細步驟">詳細步驟</a></li>
+<li><a href="#問題與解決辦法">問題與解決辦法</a></li>
+</ul></li>
 <li><a href="#mqtt-其他常用工具">MQTT 其他常用工具</a></li>
 <li><a href="#reference">Reference</a></li>
 </ul>
@@ -485,7 +489,7 @@ $ service mosquitto status</code></pre>
 <li><p>最簡單的例子:</p>
 <pre><code>$ mosquitto_pub -h localhost -m &#34;test&#34; -t home/sensor1</code></pre>
 <ul>
-<li>-h 代表設置 hostname 或 IP address</li>
+<li>-h 代表設置 hostname 或 IP address，預設為 localhost</li>
 <li>-m 代表要傳送的訊息</li>
 <li>-t 代表主題名稱</li>
 </ul></li>
@@ -495,7 +499,7 @@ $ service mosquitto status</code></pre>
 <img src="https://chiachin2686.github.io/images/articles/blog2_5.png">
 
 <ul>
-<li>-d 代表 debug</li>
+<li>-d 代表 列印 debug 資訊</li>
 </ul></li>
 </ul>
 
@@ -505,11 +509,13 @@ $ service mosquitto status</code></pre>
 <ul>
 <li>-r &ensp;設置 retain flag</li>
 <li>-n &ensp;傳送 null 訊息，適用於清除 retain 訊息</li>
+<li>-f &ensp;將指定檔案的內容作為傳送訊息的內容</li>
 <li>-p &ensp;設置 port number</li>
+<li>-q &ensp;指定QoS的值</li>
 <li>-u &ensp;使用者名稱</li>
 <li>-P &ensp;使用者密碼</li>
-<li>-i &ensp;提供 client 名稱</li>
-<li>-I &ensp;提供 client id prefix</li>
+<li>-i &ensp;指定客戶端clientid</li>
+<li>-I &ensp;指定clientId字首</li>
 <li>--help &ensp;提供協助</li>
 </ul>
 </p>
@@ -561,6 +567,9 @@ $ mosquitto_pub -h localhost -m &#34;test&#34; -t home/sensor1 -I test_client -d
 <li><p>在收到的訊息前顯示主題名稱</p>
 <pre><code>$ mosquitto_sub -h localhost -t home/sensor1 -v</code></pre></li>
 
+<li><p>每隔一段時間，發PING訊息通知broker，仍處於連線狀態 (keepalive)，預設為60秒</p>
+<pre><code>$ mosquitto_sub -h localhost -t home/sensor1 -k</code></pre></li>
+
 <li><p>變更 QoS</p>
 <pre><code>$ mosquitto_sub -h localhost -t home/sensor1 -q 1 -d</code></pre></li>
 </ul>
@@ -585,9 +594,83 @@ $ mosquitto_pub -h localhost -m &#34;test&#34; -t home/sensor1 -I test_client -d
 allow_anonymous true</code></pre>
 <p>官網參考資料: <a href="https://mosquitto.org/documentation/migrating-to-2-0" target="_blank" rel="noreferrer noopener">Migrating from 1.x to 2.0</a></p>
 
-<h1 id="設置-ssl-tls">設置 SSL/TLS</h1>
+<h1 id="設置-ssl-tls-安全設定">設置 SSL/TLS 安全設定</h1>
+
+<p>我想在 MQTT broker 與 client 之間建立加密連接，就像網頁瀏覽器與伺服器之間的安全連線。這邊我使用 <span class="highlight-text orange">OpenSSL</span> 來創建自己的 Certificate authority (CA)、 Server key 以及 certificate</p>
+
+<h2 id="詳細步驟">詳細步驟</h2>
+
+<ol>
+<li><p>為 CA 創建密鑰對 (key pair)<br />
+<code>openssl genrsa -des3 -out ca.key 2048</code>
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_9.png">
+<div class="alert info ">
+  <p>可以為 CA 創建有密碼保護的密鑰</p>
+</div></p></li>
+
+<li><p>使用 CA 密鑰為 CA 創建證書<br />
+<code>openssl req -new -x509 -days 1800 -key ca.key -out ca.crt</code>
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_10.png"></p></li>
+
+<li><p>創建一個給 broker 使用的伺服器密鑰對<br />
+<code>openssl genrsa -out server.key 2048</code>
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_11.png">
+<div class="alert warning ">
+  <p>當生成密鑰時，不該對伺服器證書使用加密（-des3），因為這會創建一個 broker 無法解碼的受密碼保護之密鑰</p>
+</div></p></li>
+
+<li><p>創建一個證書請求 (csr)<br />
+<code>openssl req -new -out server.csr -key server.key</code>
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_12.png">
+<div class="alert info ">
+  <p>填寫表單時，CommonName (CN) 很重要，通常是電腦或伺服器的 hostname、full domain name 或是 IP address</p>
+</div>
+<div class="alert warning ">
+  <p>在表單中輸入國家、組織等時，不要對 CA 和 Server 證書使用完全相同的配置，不然在執行時會報錯</p>
+</div></p></li>
+
+<li><p>使用 CA 密鑰來驗證和簽署服務器證書<br />
+<code>openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 360</code>
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_13.png"></p></li>
+
+<li><p>總共產生六個檔案<br />
+<br /><img src="https://chiachin2686.github.io/images/articles/blog2_14.png"></p></li>
+
+<li><p>將 ca.crt、serever.crt 以及 server.key 複製到 /etc/mosquitto/certs/ 資料夾內<br />
+<code>sudo cp server.key server.crt ca.crt /etc/mosquitto/certs/</code></p></li>
+
+<li><p>編輯 mosquitto.conf
+<br /><img src="https://chiachin2686.github.io/images/articles/blog2_15.png"></p></li>
+</ol>
+
+<div class="alert info ">
+  <p>驗證伺服器證書是否由特定 CA 簽名<br />
+  <code>openssl verify -CAfile ca.crt server.crt</code><br />
+  會回傳<br />
+  <img src="https://chiachin2686.github.io/images/articles/blog2_16.png"></p>
+</div>
 
 <p>可以參考這篇文章: <a href="http://www.steves-internet-guide.com/mosquitto-tls" target="_blank" rel="noreferrer noopener">Mosquitto SSL Configuration -MQTT TLS Security</a></p>
+
+<p>或是這些文章: <br />
+<a href="https://dzone.com/articles/secure-communication-with-tls-and-the-mosquitto-broker" target="_blank" rel="noreferrer noopener">Secure Communication With TLS and the Mosquitto Broker</a> </p>
+
+<a href="https://blog.csdn.net/moxiaomomo/article/details/51698118?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=mqtt%20tls&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-6-.first_rank_v2_pc_rank_v29&amp;spm=1018.2226.3001.4187" target="_blank" rel="noreferrer noopener">在MQTT中使用SSL/TLS提高安全性</a>
+
+<h2 id="問題與解決辦法">問題與解決辦法</h2>
+
+<p>設定完之後，執行 <code>mosquitto -c mosquitto.conf -v</code> ，會發生錯誤:
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_17.png"></p>
+
+<p>根據我們安裝的位置， broker 是以 mosquitto 用戶身份執行，所以 mosquitto 必須具有讀取證書和私鑰文件的權限
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_18.png"><br />
+修改一下權限
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_19.png"><br />
+重新啟動 Mosquitto broker ，可以看到成功啟動</p>
+
+<p>參考資料: <a href="https://github.com/eclipse/mosquitto/issues/2125" target="_blank" rel="noreferrer noopener">https://github.com/eclipse/mosquitto/issues/2125</a></p>
+
+<p>可以使用官方的伺服器來進行 TLS 測試: <a href="https://test.mosquitto.org" target="_blank" rel="noreferrer noopener">test.mosquitto.org</a></p>
 
 <h1 id="mqtt-其他常用工具">MQTT 其他常用工具</h1>
 
