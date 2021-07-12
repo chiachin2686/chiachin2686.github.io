@@ -432,6 +432,29 @@ $ sudo systemctl stop mosquitto.service</code></pre>
 <li>可以使用自訂的 mosquitto.conf，只須更改為該文件的相對路徑即可，例如:&ensp;/home/andy/mos/mosquitto.conf</li>
 </ul>
 
+<div class="alert info ">
+  <p><h3 id="補充-mosquitto-c-config-file-d-daemon-p-port-number-v">補充: <code>mosquitto [-c config file] [ -d | --daemon ] [-p port number] [-v]</code></h3>
+
+<ul>
+<li>-c &ensp;Load configuration from a file</li>
+<li>-d &ensp;Run mosquitto in the background as a daemon, and all other behaviour remains the same</li>
+<li>-p &ensp;Listen on the port specified</li>
+<li>-v &ensp;Use verbose logging</li>
+</ul>
+</p>
+</div>
+
+<div class="alert warning ">
+  <p><h3 id="important">Important</h3>
+
+<p>In version 1.6.x and earlier, the listener defined by -p (or the default port of 1883) would be bound to all interfaces and so be accessible from any network. It could also be used in combination with -c.</p>
+
+<p>From version 2.0 onwards, the listeners defined with -p are bound to the loopback interface only, and so can only be connected to from the local machine. If both -p is used and a listener is defined in a configuration file, then the -p options are <strong><em>IGNORED</em></strong>.</p>
+</p>
+</div>
+
+<p>參考資料: <a href="https://mosquitto.org/man/mosquitto-8.html" target="_blank" rel="noreferrer noopener">Mosquitto man page</a></p>
+
 <h2 id="在-daemon-運行時停止-mosquitto">在 daemon 運行時停止 Mosquitto</h2>
 
 <p>請使用以下指令:</p>
@@ -581,6 +604,7 @@ allow_anonymous true</code></pre>
 <li><a href="http://www.steves-internet-guide.com/mosquitto-broker" target="_blank" rel="noreferrer noopener">Mosquitto MQTT Broker</a></li>
 <li><a href="http://www.steves-internet-guide.com/install-mosquitto-linux" target="_blank" rel="noreferrer noopener">How to Install The Mosquitto MQTT Broker on Linux</a></li>
 <li><a href="https://swf.com.tw/?s=MQTT" target="_blank" rel="noreferrer noopener">MQTT教學</a></li>
+<li><a href="https://mosquitto.org/man/mosquitto-conf-5.html" target="_blank" rel="noreferrer noopener">mosquitto.conf man page</a></li>
 </ul>
 
 <blockquote>
