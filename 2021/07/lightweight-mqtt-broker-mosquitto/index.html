@@ -44,6 +44,8 @@
     
       <meta property="article:tag" content="Mosquitto">
     
+      <meta property="article:tag" content="SSL/TLS">
+    
   
 
 
@@ -310,6 +312,7 @@ if (!doNotTrack) {
 <ul>
 <li><a href="#啟動">啟動</a></li>
 <li><a href="#停止">停止</a></li>
+<li><a href="#重新啟動">重新啟動</a></li>
 <li><a href="#使用配置文件啟動-mosquitto">使用配置文件啟動 Mosquitto</a></li>
 <li><a href="#在-daemon-運行時停止-mosquitto">在 daemon 運行時停止 Mosquitto</a></li>
 <li><a href="#查看目前服務狀態">查看目前服務狀態</a></li>
@@ -422,6 +425,10 @@ $ sudo systemctl stop mosquitto.service</code></pre>
   <p>這對於「除錯」很有用</p>
 </div>
 
+<h2 id="重新啟動">重新啟動</h2>
+<pre><code>$ sudo service mosquitto restart
+或是
+$ sudo systemctl restart mosquitto.service</code></pre>
 <h2 id="使用配置文件啟動-mosquitto">使用配置文件啟動 Mosquitto</h2>
 
 <p>安裝後的配置文件（mosquitto.conf）是完全註解掉的，因為 mosquitto 不需要配置文件就可以啟動。此文件由 mosquitto 在服務啟動時加載
@@ -659,7 +666,8 @@ allow_anonymous true</code></pre>
 
 <h2 id="問題與解決辦法">問題與解決辦法</h2>
 
-<p>設定完之後，執行 <code>mosquitto -c mosquitto.conf -v</code> ，會發生錯誤:
+<ol>
+<li><p>設定完之後，執行 <code>mosquitto -c mosquitto.conf -v</code> ，會發生錯誤:
 <br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_17.png"></p>
 
 <p>根據我們安裝的位置， broker 是以 mosquitto 用戶身份執行，所以 mosquitto 必須具有讀取證書和私鑰文件的權限
@@ -668,7 +676,16 @@ allow_anonymous true</code></pre>
 <br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_19.png"><br />
 重新啟動 Mosquitto broker ，可以看到成功啟動</p>
 
-<p>參考資料: <a href="https://github.com/eclipse/mosquitto/issues/2125" target="_blank" rel="noreferrer noopener">https://github.com/eclipse/mosquitto/issues/2125</a></p>
+<p>參考資料: <a href="https://github.com/eclipse/mosquitto/issues/2125" target="_blank" rel="noreferrer noopener">https://github.com/eclipse/mosquitto/issues/2125</a></p></li>
+
+<li><p>使用 mosquitto_pub 與 mosquitto_sub 作測試時，會出現以下錯誤:
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_20.png"></p>
+
+<p>因為沒有經過授權連線，所以需要將 mosquitto.conf 中的 <code>allow_anonymous</code> 設為 <code>true</code><br />
+經過重新啟動後就能測試成功
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog2_21.png">
+<br /><img src="https://chiachin2686.github.io/images/articles/blog2_22.png"></p></li>
+</ol>
 
 <p>可以使用官方的伺服器來進行 TLS 測試: <a href="https://test.mosquitto.org" target="_blank" rel="noreferrer noopener">test.mosquitto.org</a></p>
 
@@ -725,6 +742,8 @@ License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" 
   <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/mqtt/">MQTT</a>
 
   <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/mosquitto/">Mosquitto</a>
+
+  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/ssl/tls/">SSL/TLS</a>
 
                   </div>
                 
