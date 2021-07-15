@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.83.1 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Andy Chung">
+<meta name="keywords" content="docker">
+<meta name="description" content="Docker 安裝與常用指令">
+
+
+<meta property="og:description" content="Docker 安裝與常用指令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 安裝與常用指令">
+<meta name="twitter:title" content="Docker 安裝與常用指令">
+<meta property="og:url" content="https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/">
+<meta property="twitter:url" content="https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/">
+<meta property="og:site_name" content="Program Warehouse">
+<meta property="og:description" content="Docker 安裝與常用指令">
+<meta name="twitter:description" content="Docker 安裝與常用指令">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-07-15T15:18:25">
+  
+  
+    <meta property="article:modified_time" content="2021-07-15T15:18:25">
+  
+  
+  
+    
+      <meta property="article:section" content="docker">
+    
+  
+  
+    
+      <meta property="article:tag" content="docker">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b4.jpg">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b4.jpg">
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b4.jpg">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b4.jpg">
+
+
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/avatar2.png">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/avatar2.png">
+
+
+    <title>Docker 安裝與常用指令</title>
+
+    <link rel="icon" href="images/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://chiachin2686.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-199882545-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chiachin2686.github.io/">Program Warehouse</a>
+  </div>
+  
+    
+      <a class="header-right-picture goback_homepage"
+         href="https://chiachin2686.github.io/">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chiachin2686.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Andy Chung</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello!! Welcome to my blog.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">關於我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/chiachin2686" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/15313314/andycc1126" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('/images/blog_image/b4.jpg')"
+       data-behavior="4">
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      Docker 安裝與常用指令
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-07-15T15:18:25&#43;08:00">
+        
+  
+  
+  
+  
+    2021-07-15
+  
+
+      </time>
+	  <span> | 閱讀約3分鐘 | </span>
+	  
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://chiachin2686.github.io/categories/docker">docker</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>今天這篇文章將介紹如何安裝 Docker 以及使用 Docker</p>
+
+<h1 id="table-of-contents">目錄</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#關於-docker">關於 Docker</a>
+<ul>
+<li><a href="#容器-vs-虛擬機">容器 vs 虛擬機</a>
+<ul>
+<li><a href="#虛擬機-virtual-machine-vm">虛擬機 ( Virtual Machine, VM )</a></li>
+<li><a href="#容器-container">容器 ( Container )</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#為何要使用-docker">為何要使用 Docker</a></li>
+<li><a href="#docker-基本名詞">Docker 基本名詞</a>
+<ul>
+<li><a href="#docker-系統流程">Docker 系統流程</a></li>
+</ul></li>
+<li><a href="#安裝-docker">安裝 Docker</a></li>
+<li><a href="#docker-常用指令">Docker 常用指令</a>
+<ul>
+<li><a href="#docker-抓取-image">Docker 抓取 Image</a></li>
+<li><a href="#列出所有-images">列出所有 Images</a></li>
+<li><a href="#docker-搜尋-image">Docker 搜尋 Image</a></li>
+<li><a href="#docker-刪除-image">Docker 刪除 Image</a></li>
+<li><a href="#dockerfile-產生-image">Dockerfile 產生 Image</a></li>
+<li><a href="#container-產生-image">Container 產生 Image</a></li>
+<li><a href="#啟動-docker-容器">啟動 Docker 容器</a></li>
+<li><a href="#停止-docker-容器">停止 Docker 容器</a></li>
+<li><a href="#執行-docker-容器">執行 Docker 容器</a></li>
+<li><a href="#刪除-docker-容器">刪除 Docker 容器</a></li>
+<li><a href="#複製檔案">複製檔案</a></li>
+<li><a href="#掛載目錄">掛載目錄</a></li>
+<li><a href="#網路連接埠">網路連接埠</a></li>
+<li><a href="#列出所有-docker-容器">列出所有 Docker 容器</a></li>
+<li><a href="#查看-docker-容器的-cpu-記憶體與網路用量">查看 Docker 容器的 CPU、記憶體與網路用量</a></li>
+<li><a href="#查看-docker-容器內部的行程">查看 Docker 容器內部的行程</a></li>
+<li><a href="#docker-版本資訊">Docker 版本資訊</a></li>
+<li><a href="#docker-列出-log">Docker 列出 log</a></li>
+</ul></li>
+<li><a href="#結語">結語</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</nav>
+
+<h1 id="前言">前言</h1>
+
+<p>最近剛好在使用雲端上的一些服務，其中有接觸到 Docker，為了之後能夠更加熟悉 Docker 操作方式，於是想把相關技術記錄下來。(<del>事實上是我的記性不好XD</del>)</p>
+
+<h1 id="關於-docker">關於 Docker</h1>
+
+<p><img src="https://chiachin2686.github.io/images/articles/blog3_0.png"><br />
+Docker 是一個開放原始碼專案，能讓我們快速地建立、測試和部署應用程式，並將應用程式自動化部署為可攜式且可自足的容器，在雲端或內部部署上執行，簡單來說就是一個「輕量化的虛擬機」。</p>
+
+<h2 id="容器-vs-虛擬機">容器 vs 虛擬機</h2>
+
+<h3 id="虛擬機-virtual-machine-vm">虛擬機 ( Virtual Machine, VM )</h3>
+
+<p>虛擬機是實體電腦的模擬環境，可讓我們在單一實體電腦上建立多個虛擬機，每個虛擬機都有自己的作業系統和應用程式。虛擬機無法與實體電腦直接互動，而是需要藉助一個叫做 <strong><em>Hypervisor</em></strong> 的輕量型軟體層，在虛擬機和底層的實體硬體之間進行協調。<strong><em>Hypervisor</em></strong> 負責將實體運算資源（例如處理器、記憶體及儲存設備）配置給每個虛擬機，它讓虛擬機之間相互分開，這樣就不會互相干擾。因此 VM 除了佔用的空間很大( GB 以上 )，啟動速度也較緩慢。</p>
+
+<h3 id="容器-container">容器 ( Container )</h3>
+
+<p>容器是應用程式的抽象，多個容器可以在同一台主機上運行，並與其他容器共享作業系統的 kernel。容器佔用的空間比 VM 少（ 容器映像的大小通常才幾十 MB ），可以處理更多應用程式。</p>
+
+<p>所以 VM 跟 Docker 的底層設計相當不同，以下為 Docker 官網提供的 VM 及 Docker 架構圖:</p>
+
+<ul>
+<li><p>VM
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog3_1.png"></p></li>
+
+<li><p>Docker
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog3_2.png"></p></li>
+</ul>
+
+<h1 id="為何要使用-docker">為何要使用 Docker</h1>
+
+<ul>
+<li><p>Docker 的構想理念是  <strong><em>&ldquo;Build, Ship and Run Any App, Anywhere&rdquo;</em></strong> ，簡單來說就是簡化部署的難度，且只要第一次設定檔寫好，之後可以使用同樣的設定檔，而不需再多做其他繁瑣的設定</p></li>
+
+<li><p>Docker 建立、部署、更新或刪除等非常快速及方便</p></li>
+
+<li><p>開發人員可以使用映像檔 ( image ) ，快速建立一套開發環境，在開發完成後，寫好設定檔，就可以讓別人來快速部署測試</p></li>
+</ul>
+
+<h1 id="docker-基本名詞">Docker 基本名詞</h1>
+
+<ul>
+<li>映像檔 ( Image ): 執行映像檔會產生容器，映像檔是唯讀的，可以把它想成是作業系統的 IMG、ISO 檔。一個 Image 可以產生或執行多個 Containers</li>
+<li>容器 ( Container ): 參考上面的解釋，Container 就像是 Image 上的一層 Layer</li>
+<li>倉庫 ( Registry ): 到<u><a href="https://hub.docker.com/search?q=&amp;type=image">https://hub.docker.com/search?q=&amp;type=image</a></u>抓取 Image
+<br /></li>
+</ul>
+
+<h2 id="docker-系統流程">Docker 系統流程</h2>
+
+<ol>
+<li>由 Registry 或 command 抓取 Image 到本地端或雲端</li>
+<li>啟動 Image 會產生 Container (實體化)</li>
+</ol>
+
+<h1 id="安裝-docker">安裝 Docker</h1>
+
+<p>個人是使用 Ubuntu 安裝，如果是其他作業系統的話，可以參考網路上的文章</p>
+
+<ol>
+<li><p>安裝 docker</p>
+<pre><code>sudo apt-get install docker.io`</code></pre></li>
+
+<li><p>檢查 docker 服務</p>
+<pre><code>service docker status</code></pre>
+<p>如果有正常啟動的話會在前面幾行看到： <span style="color:green;"><code>Active：active(running)</code></span></p></li>
+
+<li><p>將使用者帳號加入 docker 群組</p>
+<pre><code>sudo usermod -aG docker &lt;username&gt;</code></pre>
+<p>會使用這行指令主要是因為權限的關係，如果沒有加這個指令，會導致沒有權限使用 Docker。
+Ubuntu 預設使用者帳號為 ubuntu</p></li>
+
+<li><p>登出後再重新登入</p>
+<pre><code>docker version</code></pre>
+<p>可以看到 Docker client 與 server 的訊息，表示安裝成功</p></li>
+</ol>
+
+<h1 id="docker-常用指令">Docker 常用指令</h1>
+
+<p>以下是我常用的 Docker 指令</p>
+
+<h2 id="docker-抓取-image">Docker 抓取 Image</h2>
+<pre><code>docker pull ubuntu:20.04
+或
+docker pull ubuntu:latest   # 抓最新版 </code></pre>
+<h2 id="列出所有-images">列出所有 Images</h2>
+<pre><code>docker images</code></pre>
+<img src="https://chiachin2686.github.io/images/articles/blog3_4.png">
+
+<h2 id="docker-搜尋-image">Docker 搜尋 Image</h2>
+<pre><code>docker search &lt;IMAGE_NAME&gt;
+
+ex : docker search debian</code></pre>
+<h2 id="docker-刪除-image">Docker 刪除 Image</h2>
+<pre><code>docker rmi &lt;IMAGE_ID&gt;
+
+# 強制刪除 Image
+docker rmi -f &lt;IMAGE_ID&gt;
+
+# 刪除所有 Images
+docker rmi $(docker images -q)</code></pre>
+<h2 id="dockerfile-產生-image">Dockerfile 產生 Image</h2>
+<pre><code>docker build -t &lt;myimage&gt;</code></pre>
+<h2 id="container-產生-image">Container 產生 Image</h2>
+<pre><code>docker commit &lt;CONTAINER_ID&gt; &lt;myimage&gt;</code></pre>
+<h2 id="啟動-docker-容器">啟動 Docker 容器</h2>
+<pre><code>docker start &lt;CONTAINER_ID&gt;</code></pre>
+<ul>
+<li>CONTAINER_ID &ensp;Docker 容器的 ID</li>
+</ul>
+
+<h2 id="停止-docker-容器">停止 Docker 容器</h2>
+<pre><code>docker stop &lt;CONTAINER_ID&gt;</code></pre>
+<p>如果 Docker 容器當掉，可以改用</p>
+<pre><code>docker kill &lt;CONTAINER_ID&gt;</code></pre>
+<p>其他指令:</p>
+<pre><code># 重新啟動 Docker 容器
+docker restart &lt;CONTAINER_ID&gt;
+
+# 暫停 Docker 容器
+docker pause &lt;CONTAINER_ID&gt;
+
+# 恢復 Docker 容器
+docker unpause &lt;CONTAINER_ID&gt;</code></pre>
+<h2 id="執行-docker-容器">執行 Docker 容器</h2>
+<pre><code>docker run nginx
+##
+docker run -it tensorflow/tensorflow bash
+##
+docker run -d debian:jessie
+##
+docker run --rm debian:jessie bash</code></pre>
+<ul>
+<li>-it &ensp;自動執行 docker pull，啟動並開啟虛擬終端機</li>
+<li>-d &ensp;自動執行 docker pull + 啟動並進入背景執行</li>
+<li>&ndash;rm &ensp;Docker 容器停止執行後，會自動移除</li>
+</ul>
+
+<h2 id="刪除-docker-容器">刪除 Docker 容器</h2>
+<pre><code>docker rm &lt;CONTAINER_ID&gt;
+
+# 強制刪除 Container
+docker rm -f &lt;CONTAINER_ID&gt;
+
+# 砍掉所有停止的 Containers
+docker rm $(docker ps --filter status=exited -q)
+
+# 移除所有 Containers
+docker rm $(docker ps -a -q)</code></pre>
+<h2 id="複製檔案">複製檔案</h2>
+
+<p>將檔案或整個資料夾從實體機器（host）中複製到該容器內，Docker 容器內的預設路徑是根目錄（/）</p>
+<pre><code>docker cp &lt;HOST_FILE_PATH&gt; &lt;CONTAINER_ID&gt;:&lt;DOCKER_FILE_PATH&gt;
+
+ex : docker cp /path/to/file1 6d4821c260f3:/path/to/file2
+ex : docker cp /path/to/folder1 6d4821c260f3:/another/path/</code></pre>
+<p>若要把 Docker 容器內的檔案複製出來，也是使用相同作法</p>
+<pre><code>docker cp &lt;CONTAINER_ID&gt;:&lt;DOCKER_FILE_PATH&gt; &lt;HOST_FILE_PATH&gt; </code></pre>
+<h2 id="掛載目錄">掛載目錄</h2>
+
+<p>如果想要將實體機器的目錄直接掛載到 Docker 容器內，可以使用 <code>-v</code></p>
+<pre><code>docker run -it -v /home/test/datas:/datas tensorflow/tensorflow bash</code></pre>
+<p>將實體機器的 /home/test/datas 掛載到 Docker 容器內的 /datas，讓實體機器與 Docker 容器可以共享同一個目錄<br />
+當我們在 Docker 容器中將資料放進這個目錄時，於實體機器中可以同時看見</p>
+
+<h2 id="網路連接埠">網路連接埠</h2>
+
+<p>如果要讓 Docker 容器內部的服務可以接收來自外部的網路連線，可以使用 <code>-p</code> 將 Docker 容器內部的連接埠對應到實體機器的連接埠</p>
+<pre><code>docker run -it -p 80:8080 tensorflow/tensorflow
+或
+docker run -p 127.0.0.1:80:8080 ubuntu bash</code></pre>
+<h2 id="列出所有-docker-容器">列出所有 Docker 容器</h2>
+<pre><code>docker ps (-a)</code></pre>
+<ul>
+<li>-a &ensp;執行或停止的 Container 都列出來</li>
+</ul>
+
+<img src="https://chiachin2686.github.io/images/articles/blog3_3.png">
+
+<h2 id="查看-docker-容器的-cpu-記憶體與網路用量">查看 Docker 容器的 CPU、記憶體與網路用量</h2>
+<pre><code>docker stats (-a)</code></pre>
+<h2 id="查看-docker-容器內部的行程">查看 Docker 容器內部的行程</h2>
+<pre><code>docker top &lt;CONTAINER_ID&gt;</code></pre>
+<h2 id="docker-版本資訊">Docker 版本資訊</h2>
+<pre><code>docker version
+或
+docker info</code></pre>
+<h2 id="docker-列出-log">Docker 列出 log</h2>
+<pre><code>docker logs &lt;CONTAINER_ID&gt;</code></pre>
+<p>官方文件: &ensp;<a href="https://docs.docker.com/engine/reference/commandline/docker" target="_blank" rel="noreferrer noopener">Docker commands</a></p>
+
+<h1 id="結語">結語</h1>
+
+<p>其實 Docker 還有非常多的指令可以操作，我這邊只是稍微介紹一些常用的指令，想知道更多指令可以參考官方文件，所有指令都能查到，或是可以使用<code>docker help</code>來查詢</p>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://www.docker.com/get-started" target="_blank" rel="noreferrer noopener">Get Started with Docker</a></li>
+<li><a href="https://docs.docker.com" target="_blank" rel="noreferrer noopener">Docker Documentation</a></li>
+<li><a href="https://blog.gtwang.org/linux/docker-commands-and-container-management-tutorial" target="_blank" rel="noreferrer noopener">Docker 常用指令與容器操作教學</a></li>
+<li><a href="https://blog.longwin.com.tw/2017/01/docker-learn-initial-command-cheat-sheet-2017" target="_blank" rel="noreferrer noopener">Docker 初學筆記 - 基本指令操作教學</a></li>
+</ul>
+
+<blockquote>
+  <p>
+To know that we know what we know, and to know that we do not know what we do not know, that is true knowledge.
+</p>
+  <footer>
+    <strong></strong>
+    
+      
+        <cite>Nicolaus Copernicus</cite>
+      
+    
+  </footer>
+</blockquote>
+
+<hr />
+
+<p>Author: <a href="https://chiachin2686.github.io">Andy Chung</a> <br />
+Article link: <a href="https://chiachin2686.github.io//2021/07/docker-installation-and-common-instructions/" target="_blank" rel="noreferrer noopener">https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/</a> <br />
+License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/docker/">docker</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/" data-tooltip="輕量級 MQTT Broker -- Mosquitto">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Andy Chung. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/07/lightweight-mqtt-broker-mosquitto/" data-tooltip="輕量級 MQTT Broker -- Mosquitto">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F07%2Fdocker-installation-and-common-instructions%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F07%2Fdocker-installation-and-common-instructions%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Andy Chung</h4>
+    
+      <div id="about-card-bio">Hello!! Welcome to my blog.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        N/A
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taipei, Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://chiachin2686.github.io/images/background1.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://chiachin2686.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/chiachin2686.github.io\/2021\/07\/docker-installation-and-common-instructions\/';
+          
+            this.page.identifier = '\/2021\/07\/docker-installation-and-common-instructions\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'program-warehouse';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
