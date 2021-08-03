@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.83.1 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Andy Chung">
+<meta name="keywords" content="linux">
+<meta name="description" content="Linux 常用指令">
+
+
+<meta property="og:description" content="Linux 常用指令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 常用指令">
+<meta name="twitter:title" content="Linux 常用指令">
+<meta property="og:url" content="https://chiachin2686.github.io/2021/07/linux-common-commands/">
+<meta property="twitter:url" content="https://chiachin2686.github.io/2021/07/linux-common-commands/">
+<meta property="og:site_name" content="Program Warehouse">
+<meta property="og:description" content="Linux 常用指令">
+<meta name="twitter:description" content="Linux 常用指令">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2021-07-30T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-07-30T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="linux">
+    
+  
+  
+    
+      <meta property="article:tag" content="linux">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b6.jpg">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b6.jpg">
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b6.jpg">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b6.jpg">
+
+
+
+
+  <meta property="og:image" content="https://chiachin2686.github.io/images/avatar2.png">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/avatar2.png">
+
+
+    <title>Linux 常用指令</title>
+
+    <link rel="icon" href="images/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="https://chiachin2686.github.io/2021/07/linux-common-commands/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://chiachin2686.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-199882545-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chiachin2686.github.io/">Program Warehouse</a>
+  </div>
+  
+    
+      <a class="header-right-picture goback_homepage"
+         href="https://chiachin2686.github.io/">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chiachin2686.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">Andy Chung</h4>
+        
+          <h5 class="sidebar-profile-bio">Hello!! Welcome to my blog.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">關於我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/chiachin2686" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/15313314/andycc1126" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chiachin2686.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--partial"
+       style="background-image:url('/images/blog_image/b6.jpg')"
+       data-behavior="4">
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      Linux 常用指令
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-07-30T00:00:00Z">
+        
+  
+  
+  
+  
+    2021-07-30
+  
+
+      </time>
+	  <span> | 閱讀約3分鐘 | </span>
+	  
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://chiachin2686.github.io/categories/linux">linux</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>為了熟悉 Linux 系統的指令操作，記錄了一些常用的指令</p>
+
+<h1 id="table-of-contents">目錄</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#快捷鍵">快捷鍵</a></li>
+<li><a href="#常用指令">常用指令</a>
+<ul>
+<li><a href="#簡單工具">簡單工具</a></li>
+<li><a href="#改變目錄或檔案的屬性-權限">改變目錄或檔案的屬性、權限</a></li>
+<li><a href="#檔案與目錄的管理">檔案與目錄的管理</a></li>
+<li><a href="#檔案內容查閱">檔案內容查閱</a></li>
+<li><a href="#檔案搜尋">檔案搜尋</a></li>
+<li><a href="#建立檔案連結">建立檔案連結</a></li>
+</ul></li>
+<li><a href="#其他">其他</a></li>
+<li><a href="#結語">結語</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</nav>
+
+<h1 id="快捷鍵">快捷鍵</h1>
+
+<ul>
+<li><span class="highlight-text yellow">shift + pageup</span>
+
+<ul>
+<li>顯示畫面可以往上移動，等同於滑鼠上滾輪</li>
+</ul></li>
+<li><span class="highlight-text yellow">shift + pagedown</span>
+
+<ul>
+<li>顯示畫面可以往下移動，等同於滑鼠下滾輪</li>
+</ul></li>
+<li><span class="highlight-text yellow">\ + enter</span>
+
+<ul>
+<li>使指令接續到下一行</li>
+</ul></li>
+<li><span class="highlight-text yellow">ctrl + d</span>
+
+<ul>
+<li>登出現在的使用者或直接離開，等同於 <code>exit</code></li>
+</ul></li>
+<li><span class="highlight-text yellow">ctrl + z</span>
+
+<ul>
+<li>暫停程序，並將程序放置背景</li>
+</ul></li>
+</ul>
+
+<h1 id="常用指令">常用指令</h1>
+
+<h2 id="簡單工具">簡單工具</h2>
+
+<ul>
+<li><span class="highlight-text yellow">date</span>
+
+<ul>
+<li>顯示當下日期與時間</li>
+</ul></li>
+<li><span class="highlight-text yellow">cal</span>
+
+<ul>
+<li>顯示日曆</li>
+</ul></li>
+<li><span class="highlight-text yellow">bc</span>
+
+<ul>
+<li>簡單好用的計算機</li>
+<li>離開計算機請下 <code>quit</code> 指令</li>
+</ul></li>
+</ul>
+
+<h2 id="改變目錄或檔案的屬性-權限">改變目錄或檔案的屬性、權限</h2>
+
+<ul>
+<li><span class="highlight-text yellow">chown</span>
+
+<ul>
+<li>改變檔案擁有者</li>
+<li><code>chown [-R] 帳號名稱 檔案或目錄</code></li>
+<li><code>chown [-R] 帳號名稱:群組名稱 檔案或目錄</code></li>
+<li><strong>-R</strong> &ensp;遞迴改變目錄裡的所有檔案(包含目錄)</li>
+</ul></li>
+<li><span class="highlight-text yellow">chmod</span>
+
+<ul>
+<li>改變檔案的權限</li>
+<li><code>chmod [-R] 數字或文字表示 檔案或目錄</code></li>
+<li>每個檔案一定都有 user、group、other 的所屬權限</li>
+<li>一般情況下都可以設定 read (可讀)、write (可寫)、execute (可執行) 的權限</li>
+<li>數字表示可以是3位數或4位數</li>
+<li>一般權限: &ensp;r=4, w=2, x=1</li>
+<li>特殊權限: &ensp;SUID=4, SGID=2, Sticky bit=1</li>
+<li>Ex: &ensp;<code>chmod 741 myfile</code> &ensp;=&gt;&ensp; user: r+w+x, group: r, other: x</li>
+<li>Ex: &ensp;<code>chmod 4741 myfile</code> &ensp;=&gt;&ensp; 多加特殊權限SUID</li>
+<li>文字表示</li>
+<li>u (user)、g (group)、o (other)、a (all)</li>
+<li>+、-、=</li>
+<li>r、w、x、s、t</li>
+<li>以 <code>,</code> 隔開</li>
+<li>Ex: &ensp;<code>chmod u+rwx,g-x,o=r myfile</code></li>
+</ul></li>
+<li><span class="highlight-text yellow">chgrp</span>
+
+<ul>
+<li>改變檔案的所屬群組</li>
+<li><code>chgrp [-R] 群組名稱 檔案或目錄</code></li>
+</ul></li>
+<li><span class="highlight-text yellow">umask</span>
+
+<ul>
+<li>查看或修改檔案預設權限</li>
+<li><code>umask [-S]</code> &ensp;=&gt;&ensp; 此為查看</li>
+<li><strong>-S</strong> &nbsp;&nbsp;以文字表示顯示當時預設的權限</li>
+<li><code>umask [數字表示]</code> &ensp;=&gt;&ensp; 此為修改</li>
+<li>數字表示顯示的方式，為 <strong>被拿掉的權限</strong></li>
+<li>Ex: &ensp;020 &ensp;=&gt;&ensp; 表示 group 預設拿掉 write 的權限</li>
+</ul></li>
+</ul>
+
+<h2 id="檔案與目錄的管理">檔案與目錄的管理</h2>
+
+<ul>
+<li><span class="highlight-text yellow">mkdir</span>
+
+<ul>
+<li>建立新目錄</li>
+<li><code>mkdir [-m] [-p] 目錄</code></li>
+<li>-m &ensp;加入權限,後面接代號</li>
+<li>-p &ensp;遞迴建立目錄</li>
+</ul></li>
+
+<li><span class="highlight-text yellow">rmdir</span>
+
+<ul>
+<li>刪除空目錄</li>
+<li><code>rmdir [-p] 目錄</code></li>
+<li>-p &ensp;遞迴刪除目錄，目錄下必須為空才能刪</li>
+</ul></li>
+
+<li><span class="highlight-text yellow">cp</span>
+
+<ul>
+<li>複製檔案或目錄</li>
+<li><code>cp [-a] [-r] [-i] 來源檔 目標檔</code></li>
+<li>-a &ensp;使資料屬性完全一樣</li>
+<li>-r &ensp;遞迴複製整個目錄</li>
+<li>-i &ensp;如果目標檔案已經存在，會先提出詢問，不會直接強制覆蓋檔案</li>
+</ul></li>
+
+<li><span class="highlight-text yellow">rm</span>
+
+<ul>
+<li>刪除檔案或目錄</li>
+<li><code>rm [-r] [-f] [-i] 檔案或目錄</code></li>
+<li>-r &ensp;遞迴刪除整個目錄</li>
+<li>-f &ensp;強制刪除，忽略不存在的項目</li>
+<li>-i &ensp;會先提出詢問，不會直接刪除檔案</li>
+</ul></li>
+
+<li><span class="highlight-text yellow">mv</span>
+
+<ul>
+<li>移動檔案與目錄</li>
+<li><code>mv [-f] [-u] [-i] 來源檔 目標檔</code></li>
+<li>-f &ensp;強制覆蓋已存在的檔案</li>
+<li>-u &ensp;有舊檔案才覆蓋</li>
+<li>-i &ensp;如果目標檔案已經存在，會先提出詢問，不會直接強制覆蓋檔案</li>
+<li>-n &ensp;不會覆蓋任何檔案</li>
+<li>-u &ensp;目標檔案已經存在時，會比較來源檔案及目標檔案的時間，如果來源檔案較新才會覆蓋</li>
+</ul></li>
+
+<li><span class="highlight-text yellow">mv</span>
+
+<ul>
+<li>更改名稱</li>
+<li><code>mv 舊名稱 新名稱</code></li>
+</ul></li>
+
+<li><span class="highlight-text yellow">touch</span>
+
+<ul>
+<li>建立空檔案</li>
+<li><code>touch 檔案</code></li>
+</ul></li>
+
+<li><span class="highlight-text yellow">touch</span>
+
+<ul>
+<li>更改檔案日期</li>
+<li><code>touch [-a] [-m] [-t] [YYMMDDhhmm] 檔案</code></li>
+<li>-a &ensp;僅修改 atime</li>
+<li>-m &ensp;僅修改 mtime</li>
+<li>-t &ensp;atime與mtime都會修改</li>
+<li>EX: &ensp;touch &nbsp;-t &nbsp;202107301600 &nbsp;name &ensp;=&gt;&ensp; 將檔案時間更改為 2021/07/30 16:00</li>
+</ul></li>
+
+<li><span class="highlight-text yellow">pwd</span>
+
+<ul>
+<li>顯示目前的目錄</li>
+<li><code>pwd</code></li>
+</ul></li>
+
+<li><span class="highlight-text yellow">cd</span>
+
+<ul>
+<li>變換目錄</li>
+<li><code>cd [相對路徑/絕對路徑]</code></li>
+</ul></li>
+
+<li><span class="highlight-text yellow">ls</span>
+
+<ul>
+<li>檢視檔案與目錄</li>
+<li>常用 <code>ls -al</code> 或 <code>ll</code></li>
+</ul></li>
+</ul>
+
+<h2 id="檔案內容查閱">檔案內容查閱</h2>
+
+<ul>
+<li><span class="highlight-text yellow">cat</span>
+
+<ul>
+<li>從第一行開始顯示內容</li>
+<li><code>cat [-n] [-A] 檔案</code></li>
+<li>-n &ensp;列印出行號，連同空白行也會有行號</li>
+<li>-A &ensp;可列出一些特殊字符</li>
+</ul></li>
+
+<li><span class="highlight-text yellow">tac</span>
+
+<ul>
+<li>從最後一行開始顯示內容</li>
+<li><code>tac 檔案</code></li>
+</ul></li>
+
+<li><span class="highlight-text yellow">head / tail</span>
+
+<ul>
+<li>只看頭幾行或尾幾行</li>
+<li><code>head -n 5 檔案</code></li>
+<li><code>tail -n 10 檔案</code></li>
+</ul></li>
+
+<li><span class="highlight-text yellow">less</span>
+
+<ul>
+<li>一頁一頁的方式顯示內容</li>
+<li><code>less 檔案</code></li>
+<li>按 <code>q</code> 離開</li>
+</ul></li>
+</ul>
+
+<h2 id="檔案搜尋">檔案搜尋</h2>
+
+<ul>
+<li><span class="highlight-text yellow">which</span>
+
+<ul>
+<li>指令檔名的搜尋 (預設只會顯示找到的第一個)</li>
+<li><code>which [-a] 指令名稱</code></li>
+<li>-a &ensp;列出找到的所有檔案路徑名</li>
+</ul></li>
+
+<li><span class="highlight-text yellow">find</span>
+
+<ul>
+<li>搜尋檔案名稱、使用者、群組名稱&hellip;等</li>
+<li><code>find [PATH] [option] [action]</code></li>
+<li>查詢速度很慢</li>
+<li>EX: &ensp;<code>find . -name 檔案或目錄名稱</code> &ensp;=&gt;&ensp; 在目前目錄底下搜尋檔案</li>
+<li>EX:  &ensp;<code>find /home -iname test.txt</code> &ensp;=&gt;&ensp; 在 /home 目錄底下，不分英文大小寫，找尋檔案名稱為 test.txt 的檔案</li>
+</ul></li>
+
+<li><span class="highlight-text yellow">grep</span>
+
+<ul>
+<li>在指定的檔案內進行文字搜索</li>
+<li><code>grep 搜尋字串 檔案1 檔案2...</code></li>
+<li>可一次搜索多個檔案</li>
+</ul></li>
+</ul>
+
+<h2 id="建立檔案連結">建立檔案連結</h2>
+
+<ul>
+<li><span class="highlight-text yellow">ln</span>
+
+<ul>
+<li>建立各種連結檔案</li>
+
+<li><p>EX:</p>
+
+<ul>
+<li><p>建立硬連結 (使用相同 inode 的連結檔案)</p>
+<pre><code>ln test.txt hardlink.txt</code></pre>
+<p>建立一個 hardlink.txt 硬連結檔，指向 test.txt<br />
+可以查看一下 inode:</p>
+<pre><code>ls -i test.txt test_hardlink.txt</code></pre>
+<p>硬連結會跟原來的檔案有相同的 inode</p></li>
+
+<li><p>建立軟連結 (靠著絕對路徑或相對路徑來指向目標檔案的連結檔)</p>
+<pre><code>ln -s test.txt softlink.txt</code></pre>
+<p>建立一個 softlink.txt 軟連結檔，指向 test.txt<br />
+可以查看一下 inode:</p>
+<pre><code>ls -i test.txt softlink.txt</code></pre>
+<p>軟連結的 inode 會跟原始檔案不同</p></li>
+
+<li><p>強制覆蓋舊檔 (當目標連結檔已經存在)<br />
+可以加上 <code>-f</code> 參數</p>
+<pre><code>ln -f -s test.txt softlink.txt</code></pre></li>
+
+<li><p>自動備份舊檔</p>
+<pre><code>ln -b -s test.txt softlink.txt</code></pre>
+<p>ln 會將原本的檔案名稱後方加上一個 <code>~</code>，作為備份檔的檔名</p>
+<pre><code>ls -lart softlink.txt*</code></pre>
+<p>若要更改備份檔名的結尾名稱，可以使用 <code>-S</code> 指定新名稱</p>
+<pre><code>ln -b -S &#34;.backup&#34; -s test.txt softlink.txt</code></pre>
+<p>這樣就會使用原本的檔案名稱加上 <code>.backup</code> 作為備份檔名稱</p></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h1 id="其他">其他</h1>
+
+<ul>
+<li><span class="highlight-text yellow">ldd</span>
+
+<ul>
+<li>檢視程式依賴庫</li>
+<li>ref: &ensp;<a href="https://codertw.com/%E4%BC%BA%E6%9C%8D%E5%99%A8/379434/" target="_blank" rel="noreferrer noopener">淺談Linux中ldconfig和ldd的用法</a></li>
+</ul></li>
+
+<li><span class="highlight-text yellow">ldconfig</span>
+
+<ul>
+<li>管理動態連結庫</li>
+<li>ref: &ensp;同上</li>
+</ul></li>
+
+<li><span class="highlight-text yellow">swapon</span>
+
+<ul>
+<li>檢查目前系統是否有設定 Swap 空間</li>
+<li><code>swapon -s</code></li>
+<li>ref: &ensp;<a href="https://www.opencli.com/linux/linux-add-swap" target="_blank" rel="noreferrer noopener">Linux 增加 Swap 空間</a></li>
+</ul></li>
+</ul>
+
+<h1 id="結語">結語</h1>
+
+<p>Linux 的指令真的非常多，有需要其他功能再去網路上找，一定找得到，未來有使用到其他指令再補充</p>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://visionyi.github.io/2017/04/19/Linux%E7%B3%BB%E7%B5%B1%E7%AE%A1%E7%90%86-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E4%B9%8B%E7%AD%86%E8%A8%98/" target="_blank" rel="noreferrer noopener">Linux系統管理-常用指令之筆記</a></li>
+
+<li><a href="https://blog.gtwang.org/linux/linux-ln-command-tutorial-examples/" target="_blank" rel="noreferrer noopener">Linux 建立連結檔 ln 指令教學與範例</a></li>
+</ul>
+
+<blockquote>
+  <p>
+To know that we know what we know, and to know that we do not know what we do not know, that is true knowledge.
+</p>
+  <footer>
+    <strong></strong>
+    
+      
+        <cite>Nicolaus Copernicus</cite>
+      
+    
+  </footer>
+</blockquote>
+
+<hr />
+
+<p>Author: <a href="https://chiachin2686.github.io">Andy Chung</a> <br />
+Article link: <a href="https://chiachin2686.github.io//2021/07/linux-common-commands/" target="_blank" rel="noreferrer noopener">https://chiachin2686.github.io/2021/07/linux-common-commands/</a> <br />
+License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/linux/">linux</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/08/markdown-notes/" data-tooltip="Markdown 筆記">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/" data-tooltip="Docker 安裝與常用指令">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/07/linux-common-commands/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/07/linux-common-commands/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Andy Chung. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/08/markdown-notes/" data-tooltip="Markdown 筆記">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/" data-tooltip="Docker 安裝與常用指令">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/07/linux-common-commands/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/07/linux-common-commands/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F07%2Flinux-common-commands%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F07%2Flinux-common-commands%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chiachin2686.github.io/images/avatar2.png" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">Andy Chung</h4>
+    
+      <div id="about-card-bio">Hello!! Welcome to my blog.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        N/A
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taipei, Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://chiachin2686.github.io/images/background1.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://chiachin2686.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/chiachin2686.github.io\/2021\/07\/linux-common-commands\/';
+          
+            this.page.identifier = '\/2021\/07\/linux-common-commands\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'program-warehouse';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

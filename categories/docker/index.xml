@@ -6,11 +6,11 @@
     <description>Recent content in docker on Program Warehouse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Jul 2021 15:18:25 +0800</lastBuildDate><atom:link href="https://chiachin2686.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://chiachin2686.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker 安裝與常用指令</title>
       <link>https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/</link>
-      <pubDate>Thu, 15 Jul 2021 15:18:25 +0800</pubDate>
+      <pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://chiachin2686.github.io/2021/07/docker-installation-and-common-instructions/</guid>
       <description>&lt;p&gt;今天這篇文章將介紹如何安裝 Docker 以及使用 Docker&lt;/p&gt;</description>
