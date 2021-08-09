@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Program Warehouse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://chiachin2686.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://chiachin2686.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Raspberry Pi 使用 Ubuntu Server</title>
+      <link>https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/</link>
+      <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/</guid>
+      <description>&lt;p&gt;最近剛好要做物聯網相關的實驗，怕以後忘記，所以想把 Raspberry Pi 安裝 Ubuntu 的過程記錄下來&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Markdown 筆記</title>
       <link>https://chiachin2686.github.io/2021/08/markdown-notes/</link>

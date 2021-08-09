@@ -7,36 +7,40 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.83.1 with theme Tranquilpeak 0.4.8-BETA">
 <meta name="author" content="Andy Chung">
-<meta name="keywords" content="markdown">
-<meta name="description" content="Markdown 筆記">
+<meta name="keywords" content="raspberry pi, IoT">
+<meta name="description" content="Raspberry Pi 使用 Ubuntu Server">
 
 
-<meta property="og:description" content="Markdown 筆記">
+<meta property="og:description" content="Raspberry Pi 使用 Ubuntu Server">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown 筆記">
-<meta name="twitter:title" content="Markdown 筆記">
-<meta property="og:url" content="https://chiachin2686.github.io/2021/08/markdown-notes/">
-<meta property="twitter:url" content="https://chiachin2686.github.io/2021/08/markdown-notes/">
+<meta property="og:title" content="Raspberry Pi 使用 Ubuntu Server">
+<meta name="twitter:title" content="Raspberry Pi 使用 Ubuntu Server">
+<meta property="og:url" content="https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/">
+<meta property="twitter:url" content="https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/">
 <meta property="og:site_name" content="Program Warehouse">
-<meta property="og:description" content="Markdown 筆記">
-<meta name="twitter:description" content="Markdown 筆記">
+<meta property="og:description" content="Raspberry Pi 使用 Ubuntu Server">
+<meta name="twitter:description" content="Raspberry Pi 使用 Ubuntu Server">
 <meta property="og:locale" content="zh-tw">
 
   
-    <meta property="article:published_time" content="2021-08-02T00:00:00">
+    <meta property="article:published_time" content="2021-08-09T00:00:00">
   
   
-    <meta property="article:modified_time" content="2021-08-02T00:00:00">
+    <meta property="article:modified_time" content="2021-08-09T00:00:00">
   
-  
-  
-    
-      <meta property="article:section" content="markdown">
-    
   
   
     
-      <meta property="article:tag" content="markdown">
+      <meta property="article:section" content="IoT">
+    
+      <meta property="article:section" content="raspberry pi">
+    
+  
+  
+    
+      <meta property="article:tag" content="IoT">
+    
+      <meta property="article:tag" content="raspberry pi">
     
   
 
@@ -49,12 +53,12 @@
 
 
 
-  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b7.jpg">
-  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b7.jpg">
+  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b10.jpg">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b10.jpg">
 
 
-  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b7.jpg">
-  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b7.jpg">
+  <meta property="og:image" content="https://chiachin2686.github.io/images/blog_image/b10.jpg">
+  <meta property="twitter:image" content="https://chiachin2686.github.io/images/blog_image/b10.jpg">
 
 
 
@@ -63,14 +67,14 @@
   <meta property="twitter:image" content="https://chiachin2686.github.io/images/avatar2.png">
 
 
-    <title>Markdown 筆記</title>
+    <title>Raspberry Pi 使用 Ubuntu Server</title>
 
     <link rel="icon" href="images/favicon.ico">
     
 
     
 
-    <link rel="canonical" href="https://chiachin2686.github.io/2021/08/markdown-notes/">
+    <link rel="canonical" href="https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -234,7 +238,7 @@ if (!doNotTrack) {
   <div class="post-header-cover
               text-center
               post-header-cover--partial"
-       style="background-image:url('/images/blog_image/b7.jpg')"
+       style="background-image:url('/images/blog_image/b10.jpg')"
        data-behavior="4">
     
   </div>
@@ -243,30 +247,32 @@ if (!doNotTrack) {
       <div id="main" data-behavior="4"
         class="hasCover
                hasCoverMetaOut
-               ">
+               hasCoverCaption">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">Photo by <a href="https://unsplash.com/@kevin_w_?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kevin Wong</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></span>
           
           
             <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      Markdown 筆記
+      Raspberry Pi 使用 Ubuntu Server
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2021-08-02T00:00:00Z">
+      <time itemprop="datePublished" datetime="2021-08-09T00:00:00Z">
         
   
   
   
   
-    2021-08-02
+    2021-08-09
   
 
       </time>
-	  <span> | 閱讀約2分鐘 | </span>
+	  <span> | 閱讀約1分鐘 | </span>
 	  
     
     
@@ -274,7 +280,9 @@ if (!doNotTrack) {
   
     <span>分類</span>
     
-      <a class="category-link" href="https://chiachin2686.github.io/categories/markdown">markdown</a>
+      <a class="category-link" href="https://chiachin2686.github.io/categories/iot">IoT</a>, 
+    
+      <a class="category-link" href="https://chiachin2686.github.io/categories/raspberry-pi">raspberry pi</a>
     
   
 
@@ -284,191 +292,70 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Markdown 是一種輕量級 (lightweight) 且易於使用的語法，它允許人們使用易讀易寫的純文字格式編寫文件</p>
+              <p>最近剛好要做物聯網相關的實驗，怕以後忘記，所以想把 Raspberry Pi 安裝 Ubuntu 的過程記錄下來</p>
 
 <h1 id="table-of-contents">目錄</h1><nav id="TableOfContents">
 <ul>
-<li><a href="#主要內容">主要內容</a>
-<ul>
-<li><a href="#headers">Headers</a></li>
-<li><a href="#emphasis">Emphasis</a></li>
-<li><a href="#strikethrough">Strikethrough</a></li>
-<li><a href="#lists">Lists</a>
-<ul>
-<li><a href="#unordered">Unordered</a></li>
-<li><a href="#ordered">Ordered</a></li>
-</ul></li>
-<li><a href="#images">Images</a></li>
-<li><a href="#links">Links</a></li>
-<li><a href="#blockquotes">Blockquotes</a></li>
-<li><a href="#inline-code">Inline code</a></li>
-<li><a href="#tables">Tables</a></li>
-<li><a href="#syntax-highlighting">Syntax highlighting</a></li>
-</ul></li>
+<li><a href="#詳細步驟">詳細步驟</a></li>
+<li><a href="#補充">補充</a></li>
 <li><a href="#reference">Reference</a></li>
 </ul>
 </nav>
 
-<h1 id="主要內容">主要內容</h1>
+<h1 id="詳細步驟">詳細步驟</h1>
 
-<h2 id="headers">Headers</h2>
+<ol>
+<li><p>到 <a href="https://www.raspberrypi.org/software/operating-systems/" target="_blank" rel="noreferrer noopener">Raspberry Pi 官網</a>下載 Ubuntu Server 壓縮檔 (其他版本看自己需求而定)
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog4_1.png"><br />
+我選擇下載 64-bit 的 Ubuntu Server
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog4_2.png"></p></li>
 
-<ul>
-<li>使用 <code>#</code> 字符</li>
+<li><p>下載 <a href="https://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noreferrer noopener">Win32DiskImager</a> 並安裝</p></li>
 
-<li><p><code>#</code> 字符愈多，字體大小愈小</p>
-<pre><code># This is an &lt;h1&gt; tag
-## This is an &lt;h2&gt; tag
-###### This is an &lt;h6&gt; tag</code></pre></li>
-</ul>
+<li><p>將 SD 卡插入電腦(或使用轉接器連接到電腦)，接著將 Ubuntu Server 壓縮檔解壓縮</p></li>
 
-<h2 id="emphasis">Emphasis</h2>
+<li><p>開啟 Win32DiskImager ，設定如下:<br />
+<span class="highlight-text yellow">裝置: &ensp;SD 卡</span><br />
+<span class="highlight-text yellow">映像檔: &ensp;Ubuntu Server 映像檔</span>
+<br /><br /><img src="https://chiachin2686.github.io/images/articles/blog4_3.png"><br />
+接著按下「寫入資料到裝置中」，完成後會顯示成功畫面</p></li>
 
-<ul>
-<li>斜體字使用 <code>*</code> 或 <code>_</code> 字符</li>
+<li><p>創建一個檔名為 &ldquo;SSH&rdquo; 的空檔案，放入 SD 卡的 system-boot 資料夾中</p></li>
 
-<li><p>粗體字使用 <code>**</code> 或 <code>__</code> 字符</p>
-<pre><code>*This text is italic*
-_This text is also italic_
+<li><p>將 SD 卡插入 Raspberry Pi ，用網路線連接 router 與 Raspberry Pi (無線網路也行，但較不穩定)</p></li>
 
-**This text is bold**
-__This text is also bold__</code></pre></li>
-</ul>
+<li><p>用 Hub 連接 Raspberry Pi 提供電源</p></li>
 
-<h2 id="strikethrough">Strikethrough</h2>
+<li><p>確認 IP 位址<br />
+提供兩種方法:</p>
 
-<ul>
-<li><p>使用 <code>~~</code> 刪除線字符</p>
-<pre><code>This is a ~~strikethrough~~ .</code></pre></li>
-</ul>
+<ol>
+<li>輸入 router IP 到 router 網頁上查看目前連線裝置的 IP 資訊</li>
+<li>下載 <a href="https://www.advanced-ip-scanner.com/" target="_blank" rel="noreferrer noopener">Advanced_IP_Scanner</a> 並開啟，點選 IP ，選擇 router IP 並按掃描<br />
+<div class="alert info ">
+  <p>樹莓派的 MAC 位址前六碼固定為 B8:27:EB (廠商編號)，後六碼為流水號</p>
+</div></li>
+</ol></li>
 
-<h2 id="lists">Lists</h2>
+<li><p>開啟 MobaXterm ，點選 Session / SSH ，輸入 IP 並按下 OK ，即可開啟 Raspberry Pi</p></li>
+</ol>
 
-<h3 id="unordered">Unordered</h3>
+<div class="alert info ">
+  <p>Raspberry Pi 預設帳號: ubuntu<br />
+  Raspberry Pi 預設密碼: ubuntu<br />
+  若要關閉 Raspberry Pi ，請在命令列輸入 <code>sudo poweroff</code></p>
+</div>
 
-<ul>
-<li><p>可以使用 <code>*</code> 或 <code>-</code> 字符</p>
-<pre><code>* Item 1
-* Item 2
-  * Item 2a
-  * Item 2b</code></pre></li>
-</ul>
+<h1 id="補充">補充</h1>
 
-<h3 id="ordered">Ordered</h3>
+<p>Raspberry Pi 要使用剛買來的 SD 或 Micro SD 卡，通常不用格式化，但如果要重新安裝系統，就需要先格式化 SD 卡</p>
 
-<ul>
-<li><p>使用阿拉伯數字表示</p>
-<pre><code>1. Item 1
-1. Item 2
-   1. Item 2a
-   1. Item 2b</code></pre></li>
-</ul>
+<p>這時可以使用 <strong><a href="https://www.sdcard.org/downloads/formatter/" target="_blank" rel="noreferrer noopener">SD Memory Card Formatter</a></strong> 來將 SD 卡格式化成原來 SD 卡規格的容量大小</p>
 
-<h2 id="images">Images</h2>
-
-<ul>
-<li><p>形式為 <code>![Alt Text](URL)</code></p>
-<pre><code>![My avatar](/images/avatar.png)</code></pre></li>
-</ul>
-
-<p>EX:</p>
-
-<p><img src="https://chiachin2686.github.io/images/avatar.png" alt="My avatar" /></p>
-
-<h2 id="links">Links</h2>
-
-<ul>
-<li><p>形式為 <code>[Text](URL)</code></p>
-<pre><code>[GitHub](https://github.com/)</code></pre></li>
-</ul>
-
-<p>EX:</p>
-
-<p><a href="https://github.com/">GitHub</a></p>
-
-<h2 id="blockquotes">Blockquotes</h2>
-
-<ul>
-<li><p>使用 <code>&gt;</code> 字符</p>
-<pre><code>&gt;  Knowledge is power.</code></pre></li>
-</ul>
-
-<p>EX:</p>
-
-<blockquote>
-<p>Knowledge is power.</p>
-</blockquote>
-
-<h2 id="inline-code">Inline code</h2>
-
-<ul>
-<li><p>使用 <code>` `</code> 字符</p>
-<pre><code>This is an `&lt;inline code&gt;`.</code></pre></li>
-</ul>
-
-<p>EX:</p>
-
-<p>This is an <code>&lt;inline code&gt;</code>.</p>
-
-<h2 id="tables">Tables</h2>
-
-<ul>
-<li>使用 <code>-</code> 來分隔列 (row) (第一列)</li>
-
-<li><p>使用 <code>|</code> 來分隔行 (column))</p>
-<pre><code>First Header | Second Header | Third Header
------------- | ------------- | ------------
-item11       | item12
-item21       | item22        | item23</code></pre></li>
-</ul>
-
-<p>EX:</p>
-
-<table>
-<thead>
-<tr>
-<th>First Header</th>
-<th>Second Header</th>
-<th>Third Header</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>item11</td>
-<td>item12</td>
-<td></td>
-</tr>
-
-<tr>
-<td>item21</td>
-<td>item22</td>
-<td>item23</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="syntax-highlighting">Syntax highlighting</h2>
-
-<ul>
-<li><p>使用 <code>` ` `</code> 字符</p>
-<pre><code>```javascript
-function doSomething(a) {
-b = a + 2;
-console.log(b * 3);
-}
-```</code></pre></li>
-</ul>
-
-<p>EX:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doSomething</span>(<span style="color:#a6e22e">a</span>) {
-  <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
-  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>);
-}</code></pre></div>
 <h1 id="reference">Reference</h1>
 
 <ul>
-<li><a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noreferrer noopener">Mastering Markdown</a></li>
+<li><a href="https://atceiling.blogspot.com/2020/03/raspberry-pi-67-sdimagersdformatter.html?fbclid=IwAR2dJjtqIE-pGDqxKA9P_xhxf_LGQcAURpbHlzrC_34XPkjVG2lxZvHlNys" target="_blank" rel="noreferrer noopener">Raspberry Pi 筆記(67)：樹莓派官方SD卡燒錄程式Imager及格式化軟體SDFormatter</a></li>
 </ul>
 
 <blockquote>
@@ -488,7 +375,7 @@ To know that we know what we know, and to know that we do not know what we do no
 <hr />
 
 <p>Author: <a href="https://chiachin2686.github.io">Andy Chung</a> <br />
-Article link: <a href="https://chiachin2686.github.io//2021/08/markdown-notes/" target="_blank" rel="noreferrer noopener">https://chiachin2686.github.io/2021/08/markdown-notes/</a> <br />
+Article link: <a href="https://chiachin2686.github.io//2021/08/raspberry-pi-using-ubuntu-server/" target="_blank" rel="noreferrer noopener">https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/</a> <br />
 License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></p>
               
             </div>
@@ -501,7 +388,9 @@ License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" 
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">標籤</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/markdown/">markdown</a>
+  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/iot/">IoT</a>
+
+  <a class="tag tag--primary tag--small" href="https://chiachin2686.github.io/tags/raspberry-pi/">raspberry pi</a>
 
                   </div>
                 
@@ -514,7 +403,7 @@ License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" 
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/" data-tooltip="Raspberry Pi 使用 Ubuntu Server">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -522,7 +411,7 @@ License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" 
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/07/linux-common-commands/" data-tooltip="Linux 常用指令">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/08/markdown-notes/" data-tooltip="Markdown 筆記">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -540,13 +429,13 @@ License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" 
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/08/markdown-notes/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/08/markdown-notes/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -594,7 +483,7 @@ License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" 
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/" data-tooltip="Raspberry Pi 使用 Ubuntu Server">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -602,7 +491,7 @@ License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" 
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/07/linux-common-commands/" data-tooltip="Linux 常用指令">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chiachin2686.github.io/2021/08/markdown-notes/" data-tooltip="Markdown 筆記">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -620,13 +509,13 @@ License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" 
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/08/markdown-notes/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/08/markdown-notes/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chiachin2686.github.io/2021/08/raspberry-pi-using-ubuntu-server/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -656,13 +545,13 @@ License: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" 
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F08%2Fmarkdown-notes%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F08%2Fraspberry-pi-using-ubuntu-server%2F">
           <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F08%2Fmarkdown-notes%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchiachin2686.github.io%2F2021%2F08%2Fraspberry-pi-using-ubuntu-server%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
@@ -754,9 +643,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/chiachin2686.github.io\/2021\/08\/markdown-notes\/';
+          this.page.url = 'https:\/\/chiachin2686.github.io\/2021\/08\/raspberry-pi-using-ubuntu-server\/';
           
-            this.page.identifier = '\/2021\/08\/markdown-notes\/'
+            this.page.identifier = '\/2021\/08\/raspberry-pi-using-ubuntu-server\/'
           
         };
         (function() {
