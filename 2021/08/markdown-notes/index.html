@@ -177,6 +177,10 @@ if (!doNotTrack) {
     </a>
   </li>
 
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
   <li class="sidebar-button">
     
       <a class="sidebar-button-link " href="https://chiachin2686.github.io/#about">
@@ -187,10 +191,6 @@ if (!doNotTrack) {
     </a>
   </li>
 
-
-    </ul>
-    <ul class="sidebar-buttons">
-      
   <li class="sidebar-button">
     
       <a class="sidebar-button-link " href="https://github.com/chiachin2686" target="_blank" rel="noopener">
@@ -304,6 +304,8 @@ if (!doNotTrack) {
 <li><a href="#inline-code">Inline code</a></li>
 <li><a href="#tables">Tables</a></li>
 <li><a href="#syntax-highlighting">Syntax highlighting</a></li>
+<li><a href="#inline-html">Inline HTML</a></li>
+<li><a href="#horizontal-divider">Horizontal divider</a></li>
 </ul></li>
 <li><a href="#reference">Reference</a></li>
 </ul>
@@ -319,7 +321,12 @@ if (!doNotTrack) {
 <li><p><code>#</code> 字符愈多，字體大小愈小</p>
 <pre><code># This is an &lt;h1&gt; tag
 ## This is an &lt;h2&gt; tag
-###### This is an &lt;h6&gt; tag</code></pre></li>
+###### This is an &lt;h6&gt; tag
+
+H1 tag
+===
+H2 tag
+---</code></pre></li>
 </ul>
 
 <h2 id="emphasis">Emphasis</h2>
@@ -347,7 +354,7 @@ __This text is also bold__</code></pre></li>
 <h3 id="unordered">Unordered</h3>
 
 <ul>
-<li><p>可以使用 <code>*</code> 或 <code>-</code> 字符</p>
+<li><p>可以使用 <code>*</code> 或 <code>-</code> 或 <code>+</code> 字符</p>
 <pre><code>* Item 1
 * Item 2
   * Item 2a
@@ -357,7 +364,7 @@ __This text is also bold__</code></pre></li>
 <h3 id="ordered">Ordered</h3>
 
 <ul>
-<li><p>使用阿拉伯數字表示</p>
+<li><p>使用阿拉伯數字表示 (數字本身是否排序並不重要，通通使用相同的數字也可以)</p>
 <pre><code>1. Item 1
 1. Item 2
    1. Item 2a
@@ -368,28 +375,61 @@ __This text is also bold__</code></pre></li>
 
 <ul>
 <li><p>形式為 <code>![Alt Text](URL)</code></p>
-<pre><code>![My avatar](/images/avatar.png)</code></pre></li>
+<pre><code># 行內格式
+![My avatar](/images/avatar.png &#34;Avatar&#34;)
+
+# 參考連結格式
+![My avatar2][logo]
+
+[logo]: /images/avatar.png &#34;Avatar&#34;</code></pre></li>
 </ul>
 
 <p>EX:</p>
 
 <p><img src="https://chiachin2686.github.io/images/avatar.png" alt="My avatar" /></p>
 
+<p><img src="https://chiachin2686.github.io/images/avatar.png" alt="My avatar2" title="Avatar" /></p>
+
 <h2 id="links">Links</h2>
 
 <ul>
 <li><p>形式為 <code>[Text](URL)</code></p>
-<pre><code>[GitHub](https://github.com/)</code></pre></li>
+<pre><code># 行內連結
+[GitHub](https://github.com)
+
+# 帶有標題的行內連結
+[GitHub](https://github.com &#34;GitHub&#39;s Homepage&#34;)
+
+# 參考連結
+[一個參考連結][text 1]
+
+[一個參考連結(數字)][1]
+
+[Google]
+
+[text 1]: https://www.mozilla.org
+[1]: https://www.google.com
+[Google]: https://www.google.com</code></pre></li>
 </ul>
 
 <p>EX:</p>
 
-<p><a href="https://github.com/">GitHub</a></p>
+<p><a href="https://github.com">GitHub</a></p>
+
+<p><a href="https://github.com" title="GitHub's Homepage">GitHub</a></p>
+
+<p><a href="https://www.mozilla.org">一個參考連結</a></p>
+
+<p><a href="https://www.google.com">一個參考連結(數字)</a></p>
+
+<p><a href="https://www.google.com">Google</a></p>
 
 <h2 id="blockquotes">Blockquotes</h2>
 
 <ul>
-<li><p>使用 <code>&gt;</code> 字符</p>
+<li>使用 <code>&gt;</code> 字符</li>
+
+<li><p>可以在表格內使用行內格式</p>
 <pre><code>&gt;  Knowledge is power.</code></pre></li>
 </ul>
 
@@ -414,12 +454,19 @@ __This text is also bold__</code></pre></li>
 
 <ul>
 <li>使用 <code>-</code> 來分隔列 (row) (第一列)</li>
+<li>使用 <code>|</code> 來分隔行 (column))</li>
+<li>使用 <code>:</code> 來對齊（擺左齊左、擺右齊右，都擺就置中）</li>
 
-<li><p>使用 <code>|</code> 來分隔行 (column))</p>
+<li><p>可以在表格內使用行內格式</p>
 <pre><code>First Header | Second Header | Third Header
 ------------ | ------------- | ------------
 item11       | item12
-item21       | item22        | item23</code></pre></li>
+item21       | item22        | item23
+
+First Header | Second Header | Third Header
+------------ |:-------------:| ------------:
+item11       | _item12_
+**item21**   | item22        | `item23`</code></pre></li>
 </ul>
 
 <p>EX:</p>
@@ -448,6 +495,30 @@ item21       | item22        | item23</code></pre></li>
 </tbody>
 </table>
 
+<table>
+<thead>
+<tr>
+<th>First Header</th>
+<th align="center">Second Header</th>
+<th align="right">Third Header</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>item11</td>
+<td align="center"><em>item12</em></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td><strong>item21</strong></td>
+<td align="center">item22</td>
+<td align="right"><code>item23</code></td>
+</tr>
+</tbody>
+</table>
+
 <h2 id="syntax-highlighting">Syntax highlighting</h2>
 
 <ul>
@@ -465,10 +536,48 @@ console.log(b * 3);
   <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
   <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>);
 }</code></pre></div>
+<h2 id="inline-html">Inline HTML</h2>
+
+<ul>
+<li><p>可以在 Markdown 中直接寫入正確的 HTML</p>
+<pre><code>&lt;p&gt; Hello World!! &lt;/p&gt;
+&lt;hr&gt;
+&lt;div&gt; Buenos días &lt;/div&gt;</code></pre></li>
+</ul>
+
+<p>EX:</p>
+
+<p><p> Hello World!! </p>
+<hr>
+<div> Buenos días </div></p>
+
+<h2 id="horizontal-divider">Horizontal divider</h2>
+
+<ul>
+<li><p>三個或三個以上的符號必須在獨立的一行，前後不能有其他文字</p>
+<pre><code># 第一種
+---
+
+# 第二種
+***
+
+# 第三種
+___</code></pre></li>
+</ul>
+
+<p>EX:</p>
+
+<hr />
+
+<hr />
+
+<hr />
+
 <h1 id="reference">Reference</h1>
 
 <ul>
 <li><a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noreferrer noopener">Mastering Markdown</a></li>
+<li><a href="https://wastemobile.gitbooks.io/gitbook-chinese/content/format/markdown.html" target="_blank" rel="noreferrer noopener">GitBook 預設使用 Markdown 標記語法</a></li>
 </ul>
 
 <blockquote>
