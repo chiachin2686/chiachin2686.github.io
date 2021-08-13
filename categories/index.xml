@@ -6,7 +6,25 @@
     <description>Recent content in Categories on Program Warehouse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://chiachin2686.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://chiachin2686.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cloud</title>
+      <link>https://chiachin2686.github.io/categories/cloud/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://chiachin2686.github.io/categories/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GCP</title>
+      <link>https://chiachin2686.github.io/categories/gcp/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://chiachin2686.github.io/categories/gcp/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>IoT</title>
       <link>https://chiachin2686.github.io/categories/iot/</link>
