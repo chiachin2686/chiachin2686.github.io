@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vim on Program Warehouse</title>
+    <link>https://chiachin2686.github.io/tags/vim/</link>
+    <description>Recent content in vim on Program Warehouse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://chiachin2686.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Vim 編輯文件</title>
+      <link>https://chiachin2686.github.io/2021/09/use-vim-to-edit-files/</link>
+      <pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://chiachin2686.github.io/2021/09/use-vim-to-edit-files/</guid>
+      <description>&lt;p&gt;為了熟悉 Vim 的指令操作，記錄了一些基本指令&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
