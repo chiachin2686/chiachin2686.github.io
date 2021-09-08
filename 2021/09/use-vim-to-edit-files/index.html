@@ -308,6 +308,7 @@ if (!doNotTrack) {
 <li><a href="#指令列模式">指令列模式</a>
 <ul>
 <li><a href="#尋找文字">尋找文字</a></li>
+<li><a href="#取代文字">取代文字</a></li>
 <li><a href="#讀檔-存檔">讀檔、存檔</a></li>
 </ul></li>
 <li><a href="#一般模式">一般模式</a>
@@ -317,6 +318,7 @@ if (!doNotTrack) {
 <li><a href="#貼上文字">貼上文字</a></li>
 <li><a href="#刪除文字">刪除文字</a></li>
 <li><a href="#復原">復原</a></li>
+<li><a href="#區塊選擇-visual-block">區塊選擇(Visual Block)</a></li>
 </ul></li>
 <li><a href="#結語">結語</a></li>
 <li><a href="#reference">Reference</a></li>
@@ -332,7 +334,10 @@ if (!doNotTrack) {
 <h2 id="建立-進入檔案">建立、進入檔案</h2>
 <pre><code>vim &lt;檔名&gt; </code></pre>
 <h2 id="編輯檔案">編輯檔案</h2>
-<pre><code>i</code></pre>
+<pre><code>i
+# I, o, O, a, A, r, R 也可以進入編輯模式
+# i, o, a  =&gt;  插入
+# r  =&gt;  取代</code></pre>
 <p>進入編輯模式</p>
 
 <h2 id="存檔並退出">存檔並退出</h2>
@@ -401,6 +406,17 @@ if (!doNotTrack) {
 
 <p>找到所有可能文字之後，透過 <code>n</code> 來依序顯示結果，如果要查看上一個結果可以使用 <code>N</code></p>
 
+<h2 id="取代文字">取代文字</h2>
+
+<ul>
+<li><p style="color:red"><span class="highlight-text red">:n1,n2s/word1/word2/g</span></p>
+n1 與 n2 為數字。在第 n1 與 n2 列之間尋找 word1 這個字串，並將該字串取代為 word2</li>
+<li><p style="color:red"><span class="highlight-text red">:1,$s/word1/word2/g</span></p>
+從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2</li>
+<li><p style="color:red"><span class="highlight-text red">:1,$s/word1/word2/gc</span></p>
+從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2，且在取代前顯示提示字元給使用者確認 (confirm) 是否需要取代</li>
+</ul>
+
 <h2 id="讀檔-存檔">讀檔、存檔</h2>
 
 <p><code>:w</code>:&ensp;儲存檔案</p>
@@ -410,6 +426,14 @@ if (!doNotTrack) {
 <p><code>:wq</code>:&ensp;存檔並離開</p>
 
 <p>若遇到唯讀檔案，可以加上 <code>!</code></p>
+
+<p><code>:w [filename]</code>:&ensp;將編輯的資料儲存成另一個檔案</p>
+
+<p><code>:r [filename]</code>:&ensp;在編輯的資料中，讀入另一個檔案的資料</p>
+
+<p><code>:n1,n2 w [filename]</code>:&ensp;將 n1 到 n2 的內容儲存成 filename 這個檔案</p>
+
+<p>&ensp;</p>
 
 <h1 id="一般模式">一般模式</h1>
 
@@ -455,12 +479,14 @@ if (!doNotTrack) {
 <ul>
 <li><p style="color:red"><span class="highlight-text red">5 &nbsp;< space ></span></p>
 如果要讓游標向右五個字元，可以輸入數字 5 之後再按空白鍵</li>
+<li><p style="color:red"><span class="highlight-text red">5 &nbsp;< enter ></span></p>
+如果要讓游標向下移動五列，可以輸入數字 5 之後再按 Enter 鍵</li>
 <li><p style="color:red"><span class="highlight-text red">home &nbsp;/&nbsp; 0</span></p>
 輸入 <code>home</code> 或 <code>0</code> 前往該列的首端</li>
 <li><p style="color:red"><span class="highlight-text red">end &nbsp;/&nbsp; $</span></p>
 輸入 <code>end</code> 或 <code>$</code> 前往該列的尾端</li>
-<li><p style="color:red"><span class="highlight-text red">1G &nbsp;/&nbsp; G</span></p>
-輸入 <code>1G</code> 前往檔案第一列的第一個字元<br />
+<li><p style="color:red"><span class="highlight-text red">1G (gg, 常用) &nbsp;/&nbsp; G</span></p>
+輸入 <code>1G</code> 或是 <code>gg</code> 前往檔案第一列的第一個字元<br />
 輸入 <code>G</code> 前往檔案末端的第一個字元</li>
 <li><p style="color:red"><span class="highlight-text red">H &nbsp;/&nbsp; L</span></p>
 輸入 <code>H</code> 前往目前螢幕第一列的第一個字元<br />
@@ -559,6 +585,15 @@ if (!doNotTrack) {
 
 <p>跟複製文字的指令非常類似</p>
 
+<ul>
+<li><p style="color:red"><span class="highlight-text red">x &nbsp;/&nbsp; X</span></p>
+輸入 <code>x</code>，代表向後刪除一個字元<br />
+輸入 <code>X</code>，代表向前刪除一個字元</li>
+<li><p style="color:red"><span class="highlight-text red">d &nbsp;/&nbsp; ndd</span></p>
+輸入 <code>dd</code>，刪除游標所在的那一整列<br />
+輸入 <code>ndd</code>，刪除游標所在的向下 n 列</li>
+</ul>
+
 <h2 id="復原">復原</h2>
 
 <p><code>u</code>:&ensp;復原上一個動作</p>
@@ -566,6 +601,49 @@ if (!doNotTrack) {
 <p><code>ctrl+R</code>:&ensp;取消復原上一個動作</p>
 
 <p><code>.</code>:&ensp;重複執行上一個動作</p>
+
+<h2 id="區塊選擇-visual-block">區塊選擇(Visual Block)</h2>
+
+<table>
+<thead>
+<tr>
+<th>&ensp;</th>
+<th>&ensp;</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>v</td>
+<td>字元選擇，會將游標經過的地方反白選擇</td>
+</tr>
+
+<tr>
+<td>V</td>
+<td>列選擇，會將游標經過的列反白選擇</td>
+</tr>
+
+<tr>
+<td>[Ctrl]+v</td>
+<td>區塊選擇，可以用長方形的方式選擇資料</td>
+</tr>
+
+<tr>
+<td>y</td>
+<td>將反白的地方複製起來</td>
+</tr>
+
+<tr>
+<td>d</td>
+<td>將反白的地方刪除掉</td>
+</tr>
+
+<tr>
+<td>p</td>
+<td>將剛剛複製的區塊，在游標所在處貼上</td>
+</tr>
+</tbody>
+</table>
 
 <h1 id="結語">結語</h1>
 
